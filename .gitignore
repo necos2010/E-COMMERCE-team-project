@@ -1,0 +1,71 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependency directories
+node_modules/
+
+# Build outputs
+dist/
+build/
+dist-ssr/
+*.local
+
+# Vite cache
+.vite/
+.vitepress/
+
+# Next.js
+.next/
+out/
+
+# Nuxt.js
+.nuxt/
+output/
+
+# Gatsby
+.cache/
+public/
+
+# Remix
+/build/
+
+# Parcel
+.cache/
+
+# Storybook
+storybook-static/
+.out/
+
+# Testing
+coverage/
+test-output/
+*.spec.ts.snap
+*.test.ts.snap
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Env files
+.env
+.env.*.local
+
+# IDE/editor files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Misc
+*.tgz
+*.log.*
