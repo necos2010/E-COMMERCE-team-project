@@ -1,148 +1,62 @@
-import styled from "styled-components";
+import styles from "./Footer.module.css";
 import QrLinks from "../../assets/Frame 719.svg";
 import SocialIcons from "../../assets/Frame 741.svg";
 import SendEmailInput from "../../assets/icon-send.svg";
 
-const FooterContainer = styled.div`
-  background-color: black;
-  color: white;
-  padding: 20px 0;
-`;
-
-const FooterMainWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-`;
-
-const FooterSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 15px;
-`;
-
-const FooterTitle = styled.h2`
-  color: white;
-`;
-
-const FooterText = styled.h3`
-  color: white;
-`;
-
-const FooterSubText = styled.h4`
-  color: white;
-`;
-
-const FooterSmallerText = styled.h5`
-  color: white;
-`;
-
-const InputWrapper = styled.div`
-  position: relative;
-  display: inline-block;
-`;
-
-const Input = styled.input`
-  background-color: black;
-  border: 2px solid #fff;
-  border-radius: 10px;
-  width: 217px;
-  height: 47px;
-  color: white;
-  padding: 0 40px 0 12px;
-  position: relative;
-`;
-
-const SendIcon = styled.img`
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  height: 20px;
-  cursor: pointer;
-`;
-
-const DownloadWrapper = styled(FooterSection)`
-  p {
-    color: #5a5353;
-  }
-`;
-
-const DownloadImage = styled.img`
-  margin-bottom: 15px;
-`;
-
-const FooterHr = styled.hr`
-  border: none;
-  height: 2px;
-  background: #5a5353;
-  margin: 30px 0;
-  width: 100%;
-  border-radius: 8px;
-`;
-
-const FooterCopyright = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const CopyrightText = styled.p`
-  color: #5a5353;
-`;
-
 function Footer() {
   return (
-    <FooterContainer>
-      <FooterMainWrapper>
-        <FooterSection>
-          <FooterTitle>Exclusive</FooterTitle>
-          <FooterText>Subscribe</FooterText>
-          <FooterSmallerText>Get 10% off your first order</FooterSmallerText>
-          <InputWrapper>
-            <Input type="text" placeholder="Enter Your Email" />
-            <SendIcon src={SendEmailInput} alt="Send" />
-          </InputWrapper>
-        </FooterSection>
+    <div className={styles.footerContainer}>
+      <div className={styles.footerMainWrapper}>
+        <div className={styles.footerSection}>
+          <h2 className={styles.footerTitle}>Exclusive</h2>
+          <h3 className={styles.footerText}>Subscribe</h3>
+          <h5 className={styles.footerSmallerText}>Get 10% off your first order</h5>
+          <div className={styles.inputWrapper}>
+            <input type="text" placeholder="Enter Your Email" className={styles.input} />
+            <img src={SendEmailInput} alt="Send" className={styles.sendIcon} />
+          </div>
+        </div>
 
-        <FooterSection>
-          <FooterTitle>Support</FooterTitle>
-          <FooterSubText>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</FooterSubText>
-          <FooterSubText>exclusive@gmail.com</FooterSubText>
-          <FooterSubText>+88015-88888-9999</FooterSubText>
-        </FooterSection>
+        <div className={styles.footerSection}>
+          <h2 className={styles.footerTitle}>Support</h2>
+          <h4 className={styles.footerSubText}>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</h4>
+          <h4 className={styles.footerSubText}>exclusive@gmail.com</h4>
+          <h4 className={styles.footerSubText}>+88015-88888-9999</h4>
+        </div>
 
-        <FooterSection>
-          <FooterTitle>Account</FooterTitle>
-          <FooterSubText>My Account</FooterSubText>
-          <FooterSubText>Login / Register</FooterSubText>
-          <FooterSubText>Cart</FooterSubText>
-          <FooterSubText>Wishlist</FooterSubText>
-          <FooterSubText>Shop</FooterSubText>
-        </FooterSection>
+        <div className={styles.footerSection}>
+          <h2 className={styles.footerTitle}>Account</h2>
+          <h4 className={styles.footerSubText}>My Account</h4>
+          <h4 className={styles.footerSubText}>Login / Register</h4>
+          <h4 className={styles.footerSubText}>Cart</h4>
+          <h4 className={styles.footerSubText}>Wishlist</h4>
+          <h4 className={styles.footerSubText}>Shop</h4>
+        </div>
 
-        <FooterSection>
-          <FooterTitle>Quick Link</FooterTitle>
-          <FooterSubText>Privacy Policy</FooterSubText>
-          <FooterSubText>Terms Of Use</FooterSubText>
-          <FooterSubText>FAQ</FooterSubText>
-          <FooterSubText>Contact</FooterSubText>
-        </FooterSection>
+        <div className={styles.footerSection}>
+          <h2 className={styles.footerTitle}>Quick Link</h2>
+          <h4 className={styles.footerSubText}>Privacy Policy</h4>
+          <h4 className={styles.footerSubText}>Terms Of Use</h4>
+          <h4 className={styles.footerSubText}>FAQ</h4>
+          <h4 className={styles.footerSubText}>Contact</h4>
+        </div>
 
-        <DownloadWrapper>
-          <FooterTitle>Download App</FooterTitle>
-          <p>Save $3 with App New User Only</p>
-          <DownloadImage src={QrLinks} alt="QR" />
-          <DownloadImage src={SocialIcons} alt="Social Icons" />
-        </DownloadWrapper>
-      </FooterMainWrapper>
+        <div className={styles.downloadWrapper}>
+          <h2 className={styles.footerTitle}>Download App</h2>
+          <p className={styles.downloadText}>Save $3 with App New User Only</p>
+          <img src={QrLinks} alt="QR" className={styles.downloadImage} />
+          <img src={SocialIcons} alt="Social Icons" className={styles.downloadImage} />
+        </div>
+      </div>
 
-      <FooterHr />
+      <hr className={styles.footerHr} />
 
-      <FooterCopyright>
-        <CopyrightText>Copyright Rimel 2022. All right reserved</CopyrightText>
-      </FooterCopyright>
-    </FooterContainer>
+      <div className={styles.footerCopyright}>
+        <p className={styles.copyrightText}>
+          Copyright Rimel 2022. All right reserved
+        </p>
+      </div>
+    </div>
   );
 }
 
