@@ -1,0 +1,54 @@
+.bannerHeader{
+    display: flex;
+    background-color: black;
+    justify-content: space-between;
+    width: 892px;
+    height: 344px;
+    padding-top: 20px;
+}
+
+.bannerHeader h1{
+    color: #fff;
+}
+
+.bannerSite{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+.bannerMain{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.bannerMain h1{
+    font: 1em sans-serif;
+}
+
+.bannerH1{
+    width: 70%;
+    font-size: 48px;
+    font-weight: 600;
+    line-height: 60px;
+    letter-spacing: 4%;
+  }
+
+  .bannerbutton{
+    width: 123px;
+    height: 28px;
+    background-color: #000;
+    color: #fff;
+    border: none;
+    border-bottom: 1px solid;
+    padding-right: 40px;
+  }
+
+  .bannerImg{
+    position: absolute;
+    left: 110px;
+  }
+
+  
