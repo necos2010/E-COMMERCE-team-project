@@ -1,12 +1,9 @@
-import mockData from '../../Mockdata/data'
-const Karzinka = () => {
-  return (
-    <>
-      {mockData.map(item => (
-        <div key={item.id}>{item.name} {item.image}</div>
-      ))}
-    </>
-  );
-};
+import React from 'react'
 
-export default Karzinka;
+function Karzinka() {
+  return (
+    <div>Karzinka</div>
+  )
+}
+
+export default Karzinka

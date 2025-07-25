@@ -87,6 +87,7 @@ function RootLayout() {
             </ul>
           </nav>
         </header>
+        <hr />
       </div>
 
       <Outlet />
