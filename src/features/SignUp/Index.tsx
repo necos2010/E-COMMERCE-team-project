@@ -1,9 +1,8 @@
-import Signup from "./components/Signup";
 
 function Index() {
   return (
     <div className="container">
-      <Signup />
+      
     </div>
   );
 }
