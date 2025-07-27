@@ -1,14 +1,15 @@
 import React from 'react';
-import './App.css';
-import Contact from './features/Contact/Contact';
-import About from './features/About/About';
-import SignUp from './features/SignUp/Signup';
-import Home from './features/Home/Home';
+import Contact from './features/Contact/Index';
+import About from './features/About/Index';
+import SignUp from './features/SignUp/Index';
+import Home from './features/Home/Index';
 import RootLayout from './layouts/RootLayout';
 import Karzinka from './page/Karzinka/Karzinka';
 import User from './page/User/User';
+import LogIn from './features/logIn/Index';
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
 
 const App: React.FC = () => {
   const routes = createBrowserRouter([
@@ -22,7 +23,7 @@ const App: React.FC = () => {
         },
         {
           path: 'contact',
-          element: <Contact />,
+          element: <Contact/>,
         },
         {
           path: 'about',
@@ -39,7 +40,11 @@ const App: React.FC = () => {
         {
           path: 'user',
           element: <User/>
-        }
+        },
+        {
+          path: 'log-in',
+          element: <LogIn/>
+        },
       ],
     },
   ]);

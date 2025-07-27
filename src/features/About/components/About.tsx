@@ -1,6 +1,3 @@
-
-
-
 function About() {
   return (
     <div>
