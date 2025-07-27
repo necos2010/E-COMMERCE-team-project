@@ -7,7 +7,6 @@ import QrLinks from "../assets/Frame 719.svg";
 import SocialIcons from "../assets/Frame 741.svg";
 import Layk from "../assets/layk.svg";
 import Karzinka from "../assets/karzinka.svg";
-import User from "../assets/user.svg";
 import Search from "../assets/search.svg";
 
 function RootLayout() {
