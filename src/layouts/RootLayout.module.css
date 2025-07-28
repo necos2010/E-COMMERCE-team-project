@@ -193,13 +193,8 @@ a {
 }
 
 .header_icon_user:hover {
-  background-color: none;
-}
-
-
-
-.header_end_icon:hover:last-child{
-  background-color: none;
+  background-color: #DB4444;
+  color: #fff;
 }
 
 .headeritem {

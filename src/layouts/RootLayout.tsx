@@ -78,7 +78,9 @@ function RootLayout() {
                   />
                   <img className={styles.headerimg} src={Search} alt="" />
                 </div>
+                <NavLink to="wishlist">
                 <img className={styles.header_end_icon} src={Layk} alt="layk" />
+                </NavLink>
                 <NavLink to="karzinka">
                   <img
                     className={styles.header_end_icon}
@@ -88,11 +90,6 @@ function RootLayout() {
                 </NavLink>
                 <NavLink to="user">
                   <i className={`${styles.header_end_icon} ${styles.header_icon_user} fa-regular fa-user ${activeLink === "user" ? styles.active_user_page : ""}`}></i>
-                  {/* <img 
-                    className={`${styles.header_end_icon fa-regular fa-user} ${activeLink === "user" ? styles.active_user_page : ""}`}
-                    src={User}
-                    alt="user"
-                  /> */}
                 </NavLink>
               </div>
             }

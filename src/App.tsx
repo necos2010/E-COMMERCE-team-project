@@ -1,20 +1,20 @@
-import React from 'react';
-import Contact from './features/Contact/Index';
-import About from './features/About/Index';
-import SignUp from './features/SignUp/Index';
-import Home from './features/Home/Index';
-import RootLayout from './layouts/RootLayout';
-import Karzinka from './page/Karzinka/Karzinka';
-import User from './page/User/User';
-import LogIn from './features/logIn/Index';
+import React from "react";
+import Contact from "./features/Contact/Index";
+import About from "./features/About/Index";
+import SignUp from "./features/SignUp/Index";
+import Home from "./features/Home/Index";
+import RootLayout from "./layouts/RootLayout";
+import Karzinka from "./page/Karzinka/Karzinka";
+import User from "./page/User/User";
+import LogIn from "./features/logIn/Index";
+import Wishlist from "./features/wishlist/Wishlist";
 
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const App: React.FC = () => {
   const routes = createBrowserRouter([
     {
-      path: '/',
+      path: "/",
       element: <RootLayout />,
       children: [
         {
@@ -22,28 +22,32 @@ const App: React.FC = () => {
           element: <Home />,
         },
         {
-          path: 'contact',
-          element: <Contact/>,
+          path: "contact",
+          element: <Contact />,
         },
         {
-          path: 'about',
+          path: "about",
           element: <About />,
         },
         {
-          path: 'sign-up',
+          path: "sign-up",
           element: <SignUp />,
         },
         {
-          path: 'karzinka',
-          element: <Karzinka/>
+          path: "karzinka",
+          element: <Karzinka />,
         },
         {
-          path: 'user',
-          element: <User/>
+          path: "user",
+          element: <User />,
         },
         {
-          path: 'log-in',
-          element: <LogIn/>
+          path: "log-in",
+          element: <LogIn />,
+        },
+        {
+          path: "wishlist",
+          element: <Wishlist />,
         },
       ],
     },
