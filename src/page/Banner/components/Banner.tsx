@@ -1,9 +1,8 @@
-import styles from "./Banner.module.css";
+import styles from "../Banner.module.css";
 
 function Banner() {
   return (
-    <div>
-      <div className={styles.container}>
+      <div className={styles.banner_container}>
         <div className={styles.bannerHeader}>
           <div className={styles.bannerSite}>
           <div className={styles.bannerMain}>
@@ -19,7 +18,6 @@ function Banner() {
           <img src="../src/assets/big_phone.svg" alt="iPhone Big" />
         </div>
       </div>
-    </div>
   );
 }
 
