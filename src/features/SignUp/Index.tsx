@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, ChangeEvent, FC } from 'react';
 import styles from './Signup.module.css';
 import SideImg from '../../assets/Side-img.png';
@@ -7,6 +8,15 @@ interface FormData {
   name: string;
   contact: string;
   password: string;
+=======
+import NotFound from "../NotFound/components/NotFound";
+function Index() {
+  return (
+    <div className="container">
+      <NotFound/>
+    </div>
+  );
+>>>>>>> 8c11ef8 (NotFound, About va Contact pagelar qoshildi)
 }
 
 const Signup: FC = () => {

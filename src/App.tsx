@@ -9,6 +9,7 @@ import User from "./page/User/User";
 import LogIn from "./features/logIn/Index";
 import Wishlist from "./features/wishlist/Wishlist";
 
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 const App: React.FC = () => {
@@ -49,6 +50,7 @@ const App: React.FC = () => {
           path: "wishlist",
           element: <Wishlist />,
         },
+      
       ],
     },
   ]);
