@@ -42,7 +42,7 @@ const App: React.FC = () => {
           element: <User />,
         },
         {
-          path: "log-in",
+          path: "/login",
           element: <LogIn />,
         },
         {
