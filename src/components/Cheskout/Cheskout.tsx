@@ -53,7 +53,6 @@ function Cheskout() {
         </div>
 
         <div className={styles.orderSummary}>
-          <h2>Your Order</h2>
          {cart.map((item) => (
   <div key={item.id} className={styles.cartItem}>
     <img src={item.image} alt={item.title} className={styles.itemImage} />

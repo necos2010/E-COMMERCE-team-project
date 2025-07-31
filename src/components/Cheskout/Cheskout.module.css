@@ -43,12 +43,12 @@
   color: #555;
 }
 
-/* ORDER SUMMARY */
+
 .orderSummary {
   flex: 1;
   max-width: 500px;
   background: #fff;
-  border: 1px solid #ddd;
+
   padding: 25px;
   border-radius: 8px;
   box-sizing: border-box;
