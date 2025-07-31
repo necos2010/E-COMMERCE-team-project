@@ -1,22 +1,15 @@
-<<<<<<< HEAD
-import { useState, ChangeEvent, FC } from 'react';
+import { useState, } from 'react';
+import { type ChangeEvent, type FC } from 'react';
 import styles from './Signup.module.css';
 import SideImg from '../../assets/Side-img.png';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import axios from 'axios';
+import axiosInstance from '../../api/axiosInstance';
 
 interface FormData {
-  name: string;
-  contact: string;
+  name: string;    // This will map to 'username' on backend
+  contact: string; // This will map to 'email' on backend
   password: string;
-=======
-import NotFound from "../NotFound/components/NotFound";
-function Index() {
-  return (
-    <div className="container">
-      <NotFound/>
-    </div>
-  );
->>>>>>> 8c11ef8 (NotFound, About va Contact pagelar qoshildi)
 }
 
 const Signup: FC = () => {
@@ -28,8 +21,28 @@ const Signup: FC = () => {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    setForm(prev => ({ ...prev, [name]: value }));
   };
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  console.log('Form data being sent:', form); // Check what data you're sending
+
+  try {
+    const response = await axiosInstance.post('register/', form);
+    console.log('Registration successful:', response.data);
+    alert('Registration successful! Now you can log in.');
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error:', error.response?.data);
+      alert(error.response?.data?.error || 'Registration failed.');
+    } else {
+      console.error('Unexpected error:', error);
+      alert('Something went wrong.');
+    }
+  }
+};
 
   return (
     <div className={styles.container}>
@@ -41,7 +54,7 @@ const Signup: FC = () => {
         <h2>Create an account</h2>
         <p>Enter your details below</p>
 
-        <div className={styles.formContainer}>
+        <form className={styles.formContainer} onSubmit={handleSubmit}>
           <div className={styles.inputGroup}>
             <input
               type="text"
@@ -56,14 +69,14 @@ const Signup: FC = () => {
 
           <div className={styles.inputGroup}>
             <input
-              type="text"
+              type="email"
               name="contact"
               value={form.contact}
               onChange={handleChange}
               required
               placeholder=" "
             />
-            <label>Email or Phone Number</label>
+            <label>Email</label>
           </div>
 
           <div className={styles.inputGroup}>
@@ -78,9 +91,11 @@ const Signup: FC = () => {
             <label>Password</label>
           </div>
 
-          <button className={styles.primaryButton}>Create Account</button>
+          <button type="submit" className={styles.primaryButton}>
+            Create Account
+          </button>
 
-          <button className={styles.googleButton}>
+          <button type="button" className={styles.googleButton}>
             <img
               src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
               alt="Google icon"
@@ -89,12 +104,9 @@ const Signup: FC = () => {
           </button>
 
           <p className={styles.loginText}>
-            Already have account?
-            <NavLink to="/login">
-            <a href="/login">Log in</a>
-            </NavLink> 
+            Already have an account? <NavLink to="/login">Log in</NavLink>
           </p>
-        </div>
+        </form>
       </div>
     </div>
   );
