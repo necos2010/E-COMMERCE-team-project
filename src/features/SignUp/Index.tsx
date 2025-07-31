@@ -1,5 +1,4 @@
-import { useState, } from 'react';
-import { type ChangeEvent, type FC } from 'react';
+import { useState, type ChangeEvent, type FC } from 'react';
 import styles from './Signup.module.css';
 import SideImg from '../../assets/Side-img.png';
 import { NavLink } from 'react-router-dom';
@@ -7,15 +6,15 @@ import axios from 'axios';
 import axiosInstance from '../../api/axiosInstance';
 
 interface FormData {
-  name: string;    // This will map to 'username' on backend
-  contact: string; // This will map to 'email' on backend
+  username: string;  // Changed from 'name' to 'username' to match backend
+  email: string;     // Changed from 'contact' to 'email' to match backend
   password: string;
 }
 
 const Signup: FC = () => {
   const [form, setForm] = useState<FormData>({
-    name: '',
-    contact: '',
+    username: '',
+    email: '',
     password: ''
   });
 
@@ -24,25 +23,25 @@ const Signup: FC = () => {
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
-const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
 
-  console.log('Form data being sent:', form); // Check what data you're sending
+    console.log('Form data being sent:', form);
 
-  try {
-    const response = await axiosInstance.post('register/', form);
-    console.log('Registration successful:', response.data);
-    alert('Registration successful! Now you can log in.');
-  } catch (error) {
-    if (axios.isAxiosError(error)) {
-      console.error('Axios error:', error.response?.data);
-      alert(error.response?.data?.error || 'Registration failed.');
-    } else {
-      console.error('Unexpected error:', error);
-      alert('Something went wrong.');
+    try {
+      const response = await axiosInstance.post('register/', form);
+      console.log('Registration successful:', response.data);
+      alert('Registration successful! Now you can log in.');
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        console.error('Axios error:', error.response?.data);
+        alert(error.response?.data?.error || 'Registration failed.');
+      } else {
+        console.error('Unexpected error:', error);
+        alert('Something went wrong.');
+      }
     }
-  }
-};
+  };
 
   return (
     <div className={styles.container}>
@@ -58,20 +57,20 @@ const handleSubmit = async (e: React.FormEvent) => {
           <div className={styles.inputGroup}>
             <input
               type="text"
-              name="name"
-              value={form.name}
+              name="username"
+              value={form.username}
               onChange={handleChange}
               required
               placeholder=" "
             />
-            <label>Name</label>
+            <label>Username</label>
           </div>
 
           <div className={styles.inputGroup}>
             <input
               type="email"
-              name="contact"
-              value={form.contact}
+              name="email"
+              value={form.email}
               onChange={handleChange}
               required
               placeholder=" "

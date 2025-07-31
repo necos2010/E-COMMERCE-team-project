@@ -51,14 +51,13 @@ const App: React.FC = () => {
           path: "wishlist",
           element: <Wishlist />,
         },
-<<<<<<< HEAD
         {
           path: "cheskout",
           element: <Cheskout/>
         }
-=======
+
       
->>>>>>> ada27e2e381fd22962e69253376b1cc725cf47ca
+
       ],
     },
   ]);

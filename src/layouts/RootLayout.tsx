@@ -1,7 +1,7 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 
-import styles from "../layouts/RootLayout.module.css"; // misol uchun
+import styles from "../layouts/RootLayout.module.css";
 import SendEmailInput from "../assets/icon-send.svg";
 import QrLinks from "../assets/Frame 719.svg";
 import SocialIcons from "../assets/Frame 741.svg";
@@ -13,17 +13,14 @@ function RootLayout() {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("HOME");
 
-  //   const UserId: boolean = true2
-
   useEffect(() => {
     const path = location.pathname.toLowerCase();
     if (path === "/") setActiveLink("HOME");
     else if (path.includes("contact")) setActiveLink("CONTACT");
     else if (path.includes("about")) setActiveLink("ABOUT");
     else if (path.includes("sign-up")) setActiveLink("SIGNUP");
-
-    if (path.includes("/user")) setActiveLink("user");
-  }, [location.pathname]); // ✅ dependency array kiritildi
+    else if (path.includes("/user")) setActiveLink("user");
+  }, [location.pathname]);
 
   return (
     <>
@@ -33,65 +30,44 @@ function RootLayout() {
             <h1 className={styles.header_title}>Exclusive</h1>
             <nav>
               <ul className={styles.headerul}>
-                <NavLink
-                  to="/"
-                  className={() =>
-                    activeLink === "HOME" ? styles.link_active : ""
-                  }
-                >
+                <NavLink to="/" className={() => (activeLink === "HOME" ? styles.link_active : "")}>
                   <li className={styles.headerli}>Home</li>
                 </NavLink>
-                <NavLink
-                  to="/contact"
-                  className={() =>
-                    activeLink === "CONTACT" ? styles.link_active : ""
-                  }
-                >
-                  <li className={styles.headerli}> Contact </li>
+                <NavLink to="/contact" className={() => (activeLink === "CONTACT" ? styles.link_active : "")}>
+                  <li className={styles.headerli}>Contact</li>
                 </NavLink>
-                <NavLink
-                  to="/about"
-                  className={() =>
-                    activeLink === "ABOUT" ? styles.link_active : ""
-                  }
-                >
-                  <li className={styles.headerli}> About </li>
+                <NavLink to="/about" className={() => (activeLink === "ABOUT" ? styles.link_active : "")}>
+                  <li className={styles.headerli}>About</li>
                 </NavLink>
-                <NavLink
-                  to="/sign-up"
-                  className={() =>
-                    activeLink === "SIGNUP" ? styles.link_active : ""
-                  }
-                >
+                <NavLink to="/sign-up" className={() => (activeLink === "SIGNUP" ? styles.link_active : "")}>
                   <li className={styles.headerli}>Sign Up</li>
                 </NavLink>
               </ul>
             </nav>
-            {
-              <div className={styles.headeritem}>
-                <div className={styles.headermain}>
-                  <input
-                    className={styles.headerInput}
-                    type="text"
-                    placeholder="What are you looking for?"
-                  />
-                  <img className={styles.headerimg} src={Search} alt="" />
-                </div>
-                <NavLink to="wishlist">
-                <img className={styles.header_end_icon} src={Layk} alt="layk" />
-                </NavLink>
-                <NavLink to="karzinka">
-                  <img
-                    className={styles.header_end_icon}
-                    src={Karzinka}
-                    alt="karzinka"
-                  />
-                </NavLink>
-                <NavLink to="user">
-                  <i className={`${styles.header_end_icon} ${styles.header_icon_user} fa-regular fa-user ${activeLink === "user" ? styles.active_user_page : ""}`}></i>
-                </NavLink>
+
+            <div className={styles.headeritem}>
+              <div className={styles.headermain}>
+                <input
+                  className={styles.headerInput}
+                  type="text"
+                  placeholder="What are you looking for?"
+                />
+                <img className={styles.headerimg} src={Search} alt="Search" />
               </div>
-            }
+              <NavLink to="wishlist">
+                <img className={styles.header_end_icon} src={Layk} alt="Wishlist" />
+              </NavLink>
+              <NavLink to="karzinka">
+                <img className={styles.header_end_icon} src={Karzinka} alt="Cart" />
+              </NavLink>
+              <NavLink to="user">
+                <i
+                  className={`${styles.header_end_icon} ${styles.header_icon_user} fa-regular fa-user ${
+                    activeLink === "user" ? styles.active_user_page : ""
+                  }`}
+                ></i>
+              </NavLink>
+            </div>
           </header>
         </div>
       </div>
@@ -148,7 +124,7 @@ function RootLayout() {
               <p className={styles.downloadText}>
                 Save $3 with App New User Only
               </p>
-              <img src={QrLinks} alt="QR" className={styles.downloadImage} />
+              <img src={QrLinks} alt="QR Code" className={styles.downloadImage} />
               <img
                 src={SocialIcons}
                 alt="Social Icons"
