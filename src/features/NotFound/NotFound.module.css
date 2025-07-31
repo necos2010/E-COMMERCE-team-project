@@ -1,0 +1,74 @@
+.container {
+  min-height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  background-color: #ffffff;
+  font-family: "Poppins";
+}
+
+.breadcrumb {
+  font-size: 0.875rem;
+  color: #9ca3af; /* gray-400 */
+  margin-bottom: 0.5rem;
+}
+
+.breadcrumb span {
+  color: #000;
+}
+
+.title {
+  font-size: 7rem; 
+  
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 0rem;
+  margin-top: 140px;
+}
+
+.message {
+  
+  font-size: 18px;
+  margin-bottom: 6.5rem;
+  max-width: 500px;
+}
+
+.button {
+  width: 254px;
+  height: 56px;
+  background-color: #DB4444; /* red-600 */
+  color: white;
+  /* padding: 1.0rem 2.3rem; */
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  text-decoration: none;
+  border: solid #DB4444;
+  font-weight: 500;
+  font-size: 18px;
+  margin-bottom: 8.0rem;
+  margin-right: 41%;
+ 
+}
+
+.button:hover {
+  background-color: #b91c1c; /* red-700 */
+}
+.breadcrumb {
+  font-size: 1rem;
+  color: #9ca3af;
+  margin-bottom: -1rem;
+  margin-left: -96%;
+  margin-top: 60px;
+}
+
+.link {
+  color: gray;
+  text-decoration: none;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

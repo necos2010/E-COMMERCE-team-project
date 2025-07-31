@@ -13,7 +13,7 @@ function RootLayout() {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("HOME");
 
-  //   const UserId: boolean = true
+  //   const UserId: boolean = true2
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
@@ -22,7 +22,7 @@ function RootLayout() {
     else if (path.includes("about")) setActiveLink("ABOUT");
     else if (path.includes("sign-up")) setActiveLink("SIGNUP");
 
-    if (path.includes("user")) setActiveLink("user");
+    if (path.includes("/user")) setActiveLink("user");
   }, [location.pathname]); // ✅ dependency array kiritildi
 
   return (
