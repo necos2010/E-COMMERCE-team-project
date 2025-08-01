@@ -9,7 +9,7 @@ import User from "./page/User/User";
 import LogIn from "./features/logIn/Index";
 import Wishlist from "./components/wishlist/Wishlist";
 import Cheskout from "./components/Cheskout/Cheskout";
-
+import NotFound from "./features/NotFound/Index";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -44,7 +44,7 @@ const App: React.FC = () => {
           element: <User />,
         },
         {
-          path: "/login",
+          path: "login",
           element: <LogIn />,
         },
         {
@@ -53,11 +53,12 @@ const App: React.FC = () => {
         },
         {
           path: "cheskout",
-          element: <Cheskout/>
-        }
-
-      
-
+          element: <Cheskout />
+        },
+        {
+          path: "*",
+          element: <NotFound />,
+        },
       ],
     },
   ]);
@@ -66,3 +67,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
