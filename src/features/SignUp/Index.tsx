@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { useState, type ChangeEvent, type FC } from 'react';
+=======
+import { useState, } from 'react';
+import { type ChangeEvent, type FC } from 'react';
+>>>>>>> 931cfcd (Added a API folder and worked with backend)
 import styles from './Signup.module.css';
 import SideImg from '../../assets/Side-img.png';
 import { NavLink } from 'react-router-dom';
@@ -6,8 +11,13 @@ import axios from 'axios';
 import axiosInstance from '../../api/axiosInstance';
 
 interface FormData {
+<<<<<<< HEAD
   username: string;  // Changed from 'name' to 'username' to match backend
   email: string;     // Changed from 'contact' to 'email' to match backend
+=======
+  name: string;    // This will map to 'username' on backend
+  contact: string; // This will map to 'email' on backend
+>>>>>>> 931cfcd (Added a API folder and worked with backend)
   password: string;
 }
 
@@ -21,6 +31,7 @@ const Signup: FC = () => {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setForm(prev => ({ ...prev, [name]: value }));
+<<<<<<< HEAD
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -41,7 +52,29 @@ const Signup: FC = () => {
         alert('Something went wrong.');
       }
     }
+=======
+>>>>>>> 931cfcd (Added a API folder and worked with backend)
   };
+
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  console.log('Form data being sent:', form); // Check what data you're sending
+
+  try {
+    const response = await axiosInstance.post('register/', form);
+    console.log('Registration successful:', response.data);
+    alert('Registration successful! Now you can log in.');
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error('Axios error:', error.response?.data);
+      alert(error.response?.data?.error || 'Registration failed.');
+    } else {
+      console.error('Unexpected error:', error);
+      alert('Something went wrong.');
+    }
+  }
+};
 
   return (
     <div className={styles.container}>
@@ -69,8 +102,13 @@ const Signup: FC = () => {
           <div className={styles.inputGroup}>
             <input
               type="email"
+<<<<<<< HEAD
               name="email"
               value={form.email}
+=======
+              name="contact"
+              value={form.contact}
+>>>>>>> 931cfcd (Added a API folder and worked with backend)
               onChange={handleChange}
               required
               placeholder=" "
