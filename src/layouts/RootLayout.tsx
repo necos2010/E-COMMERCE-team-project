@@ -1,5 +1,5 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect, use, act } from "react";
 
 import styles from "../layouts/RootLayout.module.css"; // misol uchun
 import SendEmailInput from "../assets/icon-send.svg";
@@ -12,18 +12,24 @@ import Search from "../assets/search.svg";
 function RootLayout() {
   const location = useLocation();
   const [activeLink, setActiveLink] = useState("HOME");
+  const [headerLinks, setHeaderLinks] = useState([
+    { name: "Home", path: "/" },
+    { name: "Contact", path: "/contact" },
+    { name: "About", path: "/about" },
+    { name: "Sign up", path: "/sign-up" },
+  ]);
 
   //   const UserId: boolean = true2
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
-    if (path === "/") setActiveLink("HOME");
-    else if (path.includes("contact")) setActiveLink("CONTACT");
-    else if (path.includes("about")) setActiveLink("ABOUT");
-    else if (path.includes("sign-up")) setActiveLink("SIGNUP");
+    if (path === "/") setActiveLink("Home");
+    else if (path.includes("contact")) setActiveLink("Contact");
+    else if (path.includes("about")) setActiveLink("About");
+    else if (path.includes("sign-up")) setActiveLink("Sign up");
 
     if (path.includes("/user")) setActiveLink("user");
-  }, [location.pathname]); // ✅ dependency array kiritildi
+  }, [location.pathname]);
 
   return (
     <>
@@ -31,41 +37,19 @@ function RootLayout() {
         <div className="container">
           <header className={styles.siteheader}>
             <h1 className={styles.header_title}>Exclusive</h1>
-            <nav>
-              <ul className={styles.headerul}>
-                <NavLink
-                  to="/"
-                  className={() =>
-                    activeLink === "HOME" ? styles.link_active : ""
-                  }
-                >
-                  <li className={styles.headerli}>Home</li>
-                </NavLink>
-                <NavLink
-                  to="/contact"
-                  className={() =>
-                    activeLink === "CONTACT" ? styles.link_active : ""
-                  }
-                >
-                  <li className={styles.headerli}> Contact </li>
-                </NavLink>
-                <NavLink
-                  to="/about"
-                  className={() =>
-                    activeLink === "ABOUT" ? styles.link_active : ""
-                  }
-                >
-                  <li className={styles.headerli}> About </li>
-                </NavLink>
-                <NavLink
-                  to="/sign-up"
-                  className={() =>
-                    activeLink === "SIGNUP" ? styles.link_active : ""
-                  }
-                >
-                  <li className={styles.headerli}>Sign Up</li>
-                </NavLink>
-              </ul>
+            <nav className={styles.header_nav}>
+              {headerLinks.map((link, i) => (
+                <ul className={styles.headerul} key={i}>
+                  <NavLink
+                    to={link.path}
+                    className={() =>
+                      activeLink === link.name ? styles.link_active : ""
+                    }
+                  >
+                    <li className={styles.headerli}>{link.name}</li>
+                  </NavLink>
+                </ul>
+              ))}
             </nav>
             {
               <div className={styles.headeritem}>
@@ -78,7 +62,11 @@ function RootLayout() {
                   <img className={styles.headerimg} src={Search} alt="" />
                 </div>
                 <NavLink to="wishlist">
-                <img className={styles.header_end_icon} src={Layk} alt="layk" />
+                  <img
+                    className={styles.header_end_icon}
+                    src={Layk}
+                    alt="layk"
+                  />
                 </NavLink>
                 <NavLink to="karzinka">
                   <img
@@ -88,7 +76,13 @@ function RootLayout() {
                   />
                 </NavLink>
                 <NavLink to="user">
-                  <i className={`${styles.header_end_icon} ${styles.header_icon_user} fa-regular fa-user ${activeLink === "user" ? styles.active_user_page : ""}`}></i>
+                  <i
+                    className={`${styles.header_end_icon} ${
+                      styles.header_icon_user
+                    } fa-regular fa-user ${
+                      activeLink === "user" ? styles.active_user_page : ""
+                    }`}
+                  ></i>
                 </NavLink>
               </div>
             }

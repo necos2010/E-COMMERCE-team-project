@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "HAVIT HV-G92 Gamepad",
+    "image": "card1.png",
+    "price": "$120",
+    "oldprice": "$160",
+    "discount": "-40%",
+    "rating": 5,
+    "reviews": "88"
+  },
+  {
+    "id": 2,
+    "name": "AK-900 Wired Keyboard",
+    "image": "card2.png",
+    "price": "$960",
+    "oldprice": "$1160",
+    "discount": "-35%",
+    "rating": 4,
+    "reviews": "75"
+  },
+  {
+    "id": 3,
+    "name": "IPS LCD Gaming Monitor",
+    "image": "card3.png",
+    "price": "$370",
+    "oldprice": "$400",
+    "discount": "-30%",
+    "rating": 5,
+    "reviews": "99"
+  },
+  {
+    "id": 4,
+    "name": "S-Series Comfort Chair",
+    "image": "card4.png",
+    "price": "$375",
+    "oldprice": "$400",
+    "discount": "-25%",
+    "rating": 4.5,
+    "reviews": "99"
+  }
+]

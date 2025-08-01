@@ -138,8 +138,16 @@
   background-color: #000;
 }
 
+.header_nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
 a {
   text-decoration: none;
+  color: #000;
+  
 }
 
 .siteheader {
