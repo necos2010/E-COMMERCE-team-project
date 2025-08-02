@@ -1,22 +1,12 @@
-
-import { useState} from 'react';
-import { type ChangeEvent, type FC } from 'react';
+import { useState, type ChangeEvent, type FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-import { useState, } from 'react';
-import { type ChangeEvent, type FC } from 'react';
- (Added a API folder and worked with backend)
 import styles from './LogIn.module.css';
 import SideImg from '../../assets/Side-img.png';
 import axios from 'axios';
 import axiosInstance from '../../api/axiosInstance';
 
 interface FormData {
-
-  email: string;
-
-  contact: string;  // For login, this should be email or username as per your backend
-931cfcd (Added a API folder and worked with backend)
+  contact: string;  // This will be email or username
   password: string;
 }
 
@@ -24,11 +14,7 @@ const LogIn: FC = () => {
   const navigate = useNavigate();
 
   const [form, setForm] = useState<FormData>({
-<<<<<<< HEAD
-    email: '',
-=======
     contact: '',
->>>>>>> 931cfcd (Added a API folder and worked with backend)
     password: '',
   });
 
@@ -37,30 +23,21 @@ const LogIn: FC = () => {
     setForm(prev => ({ ...prev, [name]: value }));
   };
 
-<<<<<<< HEAD
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // No validation or backend call
-    alert('Logged in! Redirecting to home page...');
-    navigate('/');  // Redirect immediately
-=======
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
     try {
-      // Your backend login serializer might expect 'username' or 'email', check backend!
       const payload = {
-        username: form.contact, // or use email if backend expects it
-        password: form.password
+        username: form.contact,
+        password: form.password,
       };
 
       const response = await axiosInstance.post('login/', payload);
       console.log('Login successful:', response.data);
       alert('Login successful!');
+      navigate('/');
 
-      // You can store token here if returned
-      // localStorage.setItem('token', response.data.access);
+      // localStorage.setItem('token', response.data.access); // optional
     } catch (error) {
       if (axios.isAxiosError(error)) {
         console.error('Axios error:', error.response?.data);
@@ -70,7 +47,6 @@ const LogIn: FC = () => {
         alert('Something went wrong.');
       }
     }
->>>>>>> 931cfcd (Added a API folder and worked with backend)
   };
 
   return (
@@ -86,18 +62,14 @@ const LogIn: FC = () => {
         <form className={styles.formContainer} onSubmit={handleLogin}>
           <div className={styles.inputGroup}>
             <input
-              type="email"
-              name="email"
-              value={form.email}
+              type="text"
+              name="contact"
+              value={form.contact}
               onChange={handleChange}
               required
               placeholder=" "
             />
-<<<<<<< HEAD
-            <label>Email</label>
-=======
             <label>Email or Username</label>
->>>>>>> 931cfcd (Added a API folder and worked with backend)
           </div>
 
           <div className={styles.inputGroup}>
