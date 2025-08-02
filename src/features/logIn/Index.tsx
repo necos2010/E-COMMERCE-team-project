@@ -1,22 +1,22 @@
-<<<<<<< HEAD
+
 import { useState} from 'react';
 import { type ChangeEvent, type FC } from 'react';
 import { useNavigate } from 'react-router-dom';
-=======
+
 import { useState, } from 'react';
 import { type ChangeEvent, type FC } from 'react';
->>>>>>> 931cfcd (Added a API folder and worked with backend)
+ (Added a API folder and worked with backend)
 import styles from './LogIn.module.css';
 import SideImg from '../../assets/Side-img.png';
 import axios from 'axios';
 import axiosInstance from '../../api/axiosInstance';
 
 interface FormData {
-<<<<<<< HEAD
+
   email: string;
-=======
+
   contact: string;  // For login, this should be email or username as per your backend
->>>>>>> 931cfcd (Added a API folder and worked with backend)
+931cfcd (Added a API folder and worked with backend)
   password: string;
 }
 
