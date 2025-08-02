@@ -4,10 +4,12 @@ import About from "./features/About/Index";
 import SignUp from "./features/SignUp/Index";
 import Home from "./features/Home/Index";
 import RootLayout from "./layouts/RootLayout";
-import Karzinka from "./page/Karzinka/Karzinka";
+import Karzinka from "./components/Karzinka/Karzinka";
 import User from "./page/User/User";
 import LogIn from "./features/logIn/Index";
-import Wishlist from "./features/wishlist/Wishlist";
+import Wishlist from "./components/wishlist/Wishlist";
+import Cheskout from "./components/Cheskout/Cheskout";
+
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
@@ -42,13 +44,20 @@ const App: React.FC = () => {
           element: <User />,
         },
         {
-          path: "log-in",
+          path: "/login",
           element: <LogIn />,
         },
         {
           path: "wishlist",
           element: <Wishlist />,
         },
+        {
+          path: "cheskout",
+          element: <Cheskout/>
+        }
+
+      
+
       ],
     },
   ]);

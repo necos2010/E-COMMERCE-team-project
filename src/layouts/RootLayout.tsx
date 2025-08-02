@@ -1,7 +1,7 @@
 import { Outlet, NavLink, useLocation } from "react-router-dom";
-import { useState, useEffect, use, act } from "react";
+import { useState, useEffect, createContext } from "react";
 
-import styles from "../layouts/RootLayout.module.css"; // misol uchun
+import styles from "../layouts/RootLayout.module.css";
 import SendEmailInput from "../assets/icon-send.svg";
 import QrLinks from "../assets/Frame 719.svg";
 import SocialIcons from "../assets/Frame 741.svg";
@@ -9,17 +9,19 @@ import Layk from "../assets/layk.svg";
 import Karzinka from "../assets/karzinka.svg";
 import Search from "../assets/search.svg";
 
+export const AddAndFavorite = createContext<any>(null);
+
 function RootLayout() {
   const location = useLocation();
-  const [activeLink, setActiveLink] = useState("HOME");
+  const [activeLink, setActiveLink] = useState("Home");
   const [headerLinks, setHeaderLinks] = useState([
     { name: "Home", path: "/" },
     { name: "Contact", path: "/contact" },
     { name: "About", path: "/about" },
     { name: "Sign up", path: "/sign-up" },
   ]);
-
-  //   const UserId: boolean = true2
+  const [fovorite, setFovorite] = useState<number[]>([]);
+  const [addCard, setAddCard] = useState<number[]>([]);
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
@@ -27,8 +29,6 @@ function RootLayout() {
     else if (path.includes("contact")) setActiveLink("Contact");
     else if (path.includes("about")) setActiveLink("About");
     else if (path.includes("sign-up")) setActiveLink("Sign up");
-
-    if (path.includes("/user")) setActiveLink("user");
   }, [location.pathname]);
 
   return (
@@ -51,46 +51,50 @@ function RootLayout() {
                 </ul>
               ))}
             </nav>
-            {
-              <div className={styles.headeritem}>
-                <div className={styles.headermain}>
-                  <input
-                    className={styles.headerInput}
-                    type="text"
-                    placeholder="What are you looking for?"
-                  />
-                  <img className={styles.headerimg} src={Search} alt="" />
-                </div>
-                <NavLink to="wishlist">
-                  <img
-                    className={styles.header_end_icon}
-                    src={Layk}
-                    alt="layk"
-                  />
-                </NavLink>
-                <NavLink to="karzinka">
-                  <img
-                    className={styles.header_end_icon}
-                    src={Karzinka}
-                    alt="karzinka"
-                  />
-                </NavLink>
-                <NavLink to="user">
-                  <i
-                    className={`${styles.header_end_icon} ${
-                      styles.header_icon_user
-                    } fa-regular fa-user ${
-                      activeLink === "user" ? styles.active_user_page : ""
-                    }`}
-                  ></i>
-                </NavLink>
+            <div className={styles.headeritem}>
+              <div className={styles.headermain}>
+                <input
+                  className={styles.headerInput}
+                  type="text"
+                  placeholder="What are you looking for?"
+                />
+                <img className={styles.headerimg} src={Search} alt="" />
               </div>
-            }
+              <NavLink to="wishlist" className={styles.wishlist_link}>
+                <img className={styles.header_end_icon} src={Layk} alt="layk" />
+                {fovorite.length > 0 &&<span className={styles.wishlist_span}>{fovorite.length}</span>}
+              </NavLink>
+              <NavLink to="karzinka" className={styles.korzinka_link}>
+                <img
+                  className={styles.header_end_icon}
+                  src={Karzinka}
+                  alt="karzinka"
+                />
+                {addCard.length > 0 &&<span className={styles.korzinka_span}>{addCard.length}</span>}
+              </NavLink>
+              <NavLink to="user">
+                <i
+                  className={`${styles.header_end_icon} ${
+                    styles.header_icon_user
+                  } fa-regular fa-user ${
+                    activeLink === "user" ? styles.active_user_page : ""
+                  }`}
+                ></i>
+              </NavLink>
+            </div>
           </header>
         </div>
       </div>
-
-      <Outlet />
+      <AddAndFavorite.Provider
+        value={{
+          fovorite: fovorite,
+          setFovorite: setFovorite,
+          addCard: addCard,
+          setAddCard: setAddCard,
+        }}
+      >
+        <Outlet />
+      </AddAndFavorite.Provider>
 
       <div className={styles.footerContainer}>
         <div className="container">
@@ -142,7 +146,11 @@ function RootLayout() {
               <p className={styles.downloadText}>
                 Save $3 with App New User Only
               </p>
-              <img src={QrLinks} alt="QR" className={styles.downloadImage} />
+              <img
+                src={QrLinks}
+                alt="QR Code"
+                className={styles.downloadImage}
+              />
               <img
                 src={SocialIcons}
                 alt="Social Icons"

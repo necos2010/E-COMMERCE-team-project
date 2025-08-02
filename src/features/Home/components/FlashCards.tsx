@@ -1,7 +1,7 @@
 import styles from "../Home.module.css";
 import Mockdata from "../../../mockdata/FlashCards.json";
-import { useState } from "react";
-
+import { useContext } from "react";
+import { AddAndFavorite } from "../../../layouts/RootLayout";
 export interface FlashCard {
   id: number;
   name: string;
@@ -13,15 +13,17 @@ export interface FlashCard {
   reviews: string;
 }
 
-function FlashCards() {
-  const [fovorite, setFovorite] = useState<number[]>([]);
-  const [addCard, setAddCard] = useState<number[]>([]);
-  console.log(addCard)
+function FlashCards({ arrowBtn }: { arrowBtn: number }) {
+  const { fovorite, setFovorite, addCard, setAddCard } =
+    useContext(AddAndFavorite);
+  console.log(addCard);
   const toggleFovorite = (id: number) => {
-    setFovorite((prev) => 
-      prev.includes(id)? prev.filter((favId) => favId !== id) : [...prev, id]
-    )
-  }
+    setFovorite((prev: any) =>
+      prev.includes(id)
+        ? prev.filter((favId: any) => favId !== id)
+        : [...prev, id]
+    );
+  };
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -59,34 +61,48 @@ function FlashCards() {
   return (
     <div className={styles.flash_sales_cards_container}>
       <div className={styles.flash_cards_overflow}>
-        {Mockdata.map((item: FlashCard) => (
-          <div className={styles.flash_sales_cards_content} key={item.id}>
-            <p className={styles.discount}>{item.discount}</p>
-            <div className={styles.icons_wrapper}>
-              <i className={`fa-regular fa-heart ${styles.fa_heart} ${fovorite.includes(item.id)? styles.active_class_heart: ""}`} onClick={() => toggleFovorite(item.id)}></i>
-              <img src="../src/assets/eye.svg" alt="" />
-            </div>
-            <div className={styles.card_item_img_wrapper}>
-              <img
-                className={styles.card_item_img}
-                src={`../src/assets/${item.image}`}
-                alt={item.name}
-              />
-              {!addCard.includes(item.id) &&<button onClick={() =>setAddCard([...addCard,item.id])} className={styles.card_item_button}>Add to Cart</button>}
-            </div>
-            <div className={styles.flash_card_about_content}>
-              <h3 className={styles.flash_card_name}>{item.name}</h3>
-              <div className={styles.flash_cards_cost}>
-                <p className={styles.now_cost}>{item.price}</p>
-                <p className={styles.oldprice}>{item.oldprice}</p>
+        <div className={styles.overflow_cards_trans} style={{ transform: `translateX(${arrowBtn}px)` }}>
+          {Mockdata.map((item: FlashCard) => (
+            <div className={styles.flash_sales_cards_content} key={item.id}>
+              <p className={styles.discount}>{item.discount}</p>
+              <div className={styles.icons_wrapper}>
+                <i
+                  className={`fa-regular fa-heart ${styles.fa_heart} ${
+                    fovorite.includes(item.id) ? styles.active_class_heart : ""
+                  }`}
+                  onClick={() => toggleFovorite(item.id)}
+                ></i>
+                <img src="../src/assets/eye.svg" alt="" />
               </div>
-              <div className={styles.raiting_wrapper}>
-                {renderStars(item.rating)}
-                <p className={styles.reviews}>({item.reviews})</p>
+              <div className={styles.card_item_img_wrapper}>
+                <img
+                  className={styles.card_item_img}
+                  src={`../src/assets/${item.image}`}
+                  alt={item.name}
+                />
+                {!addCard.includes(item.id) && (
+                  <button
+                    onClick={() => setAddCard([...addCard, item.id])}
+                    className={styles.card_item_button}
+                  >
+                    Add to Cart
+                  </button>
+                )}
+              </div>
+              <div className={styles.flash_card_about_content}>
+                <h3 className={styles.flash_card_name}>{item.name}</h3>
+                <div className={styles.flash_cards_cost}>
+                  <p className={styles.now_cost}>{item.price}</p>
+                  <p className={styles.oldprice}>{item.oldprice}</p>
+                </div>
+                <div className={styles.raiting_wrapper}>
+                  {renderStars(item.rating)}
+                  <p className={styles.reviews}>({item.reviews})</p>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );

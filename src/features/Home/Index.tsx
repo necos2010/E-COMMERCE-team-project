@@ -1,4 +1,3 @@
-import React from 'react'
 import Banner from '../../page/Banner/Index'
 import styles from './Home.module.css'
 import HeroLinks from './components/HeroLinks'
