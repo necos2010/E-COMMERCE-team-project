@@ -72,7 +72,7 @@ function RootLayout() {
                 />
                 {addCard.length > 0 &&<span className={styles.korzinka_span}>{addCard.length}</span>}
               </NavLink>
-              <NavLink to="user">
+              <NavLink to="/user">
                 <i
                   className={`${styles.header_end_icon} ${
                     styles.header_icon_user
@@ -118,6 +118,7 @@ function RootLayout() {
                 />
               </div>
             </div>
+
             <div className={styles.footerSection}>
               <h2 className={styles.footerTitle}>Support</h2>
               <h4 className={styles.footerSubText}>
@@ -126,6 +127,7 @@ function RootLayout() {
               <h4 className={styles.footerSubText}>exclusive@gmail.com</h4>
               <h4 className={styles.footerSubText}>+88015-88888-9999</h4>
             </div>
+
             <div className={styles.footerSection}>
               <h2 className={styles.footerTitle}>Account</h2>
               <h4 className={styles.footerSubText}>My Account</h4>
@@ -134,6 +136,7 @@ function RootLayout() {
               <h4 className={styles.footerSubText}>Wishlist</h4>
               <h4 className={styles.footerSubText}>Shop</h4>
             </div>
+
             <div className={styles.footerSection}>
               <h2 className={styles.footerTitle}>Quick Link</h2>
               <h4 className={styles.footerSubText}>Privacy Policy</h4>
@@ -141,6 +144,7 @@ function RootLayout() {
               <h4 className={styles.footerSubText}>FAQ</h4>
               <h4 className={styles.footerSubText}>Contact</h4>
             </div>
+
             <div className={styles.downloadWrapper}>
               <h2 className={styles.footerTitle}>Download App</h2>
               <p className={styles.downloadText}>
@@ -158,10 +162,11 @@ function RootLayout() {
               />
             </div>
           </div>
+  
           <hr className={styles.footerHr} />
           <div className={styles.footerCopyright}>
             <p className={styles.copyrightText}>
-              Copyright Rimel 2022. All right reserved
+              Copyright Rimel 2022. All rights reserved
             </p>
           </div>
         </div>

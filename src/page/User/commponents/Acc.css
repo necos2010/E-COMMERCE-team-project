@@ -1,0 +1,56 @@
+.accWrapper {
+    max-width: 150px;
+}
+
+.accWrapper p {
+    margin: 0;
+    height: 24px;
+}
+
+.accBtns a {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    font-family: Poppins;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: silver;
+    width: 165px;
+    margin-top: 5px;
+    margin-left: 35px;
+    margin-bottom: 24px;
+    color: silver;
+    text-decoration: none;
+}
+
+
+.accBtns a {
+  color: silver;
+  text-decoration: none;
+}
+
+.accBtns a.active {
+  color: red;
+}
+
+.accBtns a:hover {
+  color: red;
+}
+
+
+
+
+.accBtns2 a {
+    display: flex;
+    border: none;
+    background-color: transparent;
+    font-family: Poppins;
+    font-weight: 400;
+    font-style: Regular;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0%;
+    color: silver;
+    width: 138px;
+}

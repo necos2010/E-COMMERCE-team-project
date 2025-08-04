@@ -5,13 +5,13 @@ import SignUp from "./features/SignUp/Index";
 import Home from "./features/Home/Index";
 import RootLayout from "./layouts/RootLayout";
 import Karzinka from "./components/Karzinka/Karzinka";
-import User from "./page/User/User";
+import User from "./page/User/Index";
 import LogIn from "./features/logIn/Index";
 import Wishlist from "./components/wishlist/Wishlist";
 import Cheskout from "./components/Cheskout/Cheskout";
-import NotFound from "./features/NotFound/Index";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import NotFound from "./features/NotFound/components/NotFound";
 
 const App: React.FC = () => {
   const routes = createBrowserRouter([
