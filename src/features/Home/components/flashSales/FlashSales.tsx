@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
-import styles from "../Home.module.css";
+import styles from "../../Home.module.css";
 import FlashCards from "./FlashCards";
-import Mockdata from "../../../mockdata/FlashCards.json";
+import Mockdata from "../../../../mockdata/FlashCards.json";
 
 function FlashSales() {
   const countTime = 3 * 24 * 60 * 60;
   const [timeLeft, setTimeLeft] = useState<number>(countTime);
   const [arrowBtn, setArrowBtn] = useState<number>(0);
+  const [showAllCards, setShowAllCards] = useState(false)
 
   const cardWidth = 298;
   const visibleCards = 4;
@@ -20,7 +21,10 @@ function FlashSales() {
   }, []);
 
   const days = String(Math.floor(timeLeft / (24 * 3600))).padStart(2, "0");
-  const hours = String(Math.floor((timeLeft % (24 * 3600)) / 3600)).padStart(2, "0");
+  const hours = String(Math.floor((timeLeft % (24 * 3600)) / 3600)).padStart(
+    2,
+    "0"
+  );
   const minutes = String(Math.floor((timeLeft % 3600) / 60)).padStart(2, "0");
   const seconds = String(timeLeft % 60).padStart(2, "0");
 
@@ -60,7 +64,13 @@ function FlashSales() {
           <i onClick={rightArrow} className="fa-solid fa-arrow-right"></i>
         </div>
       </div>
-      <FlashCards arrowBtn={arrowBtn} />
+      <FlashCards arrowBtn={arrowBtn} showAllCards={showAllCards}/>
+      <div className={styles.view_all_products_and_hr}>
+        <div className={styles.view_products_btn}>
+          <button>View All Products</button>
+        </div>
+        <hr className={styles.flash_sales_hr} />
+      </div>
     </div>
   );
 }

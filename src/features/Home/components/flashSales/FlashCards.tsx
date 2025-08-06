@@ -1,7 +1,7 @@
-import styles from "../Home.module.css";
-import Mockdata from "../../../mockdata/FlashCards.json";
+import styles from "../../Home.module.css";
+import Mockdata from "../../../../mockdata/FlashCards.json";
 import { useContext } from "react";
-import { AddAndFavorite } from "../../../layouts/RootLayout";
+import { AddAndFavorite } from "../../../../layouts/RootLayout";
 export interface FlashCard {
   id: number;
   name: string;
@@ -13,10 +13,9 @@ export interface FlashCard {
   reviews: string;
 }
 
-function FlashCards({ arrowBtn }: { arrowBtn: number }) {
+function FlashCards({ arrowBtn, showAllCards }: { arrowBtn: number,showAllCards: boolean }) {
   const { fovorite, setFovorite, addCard, setAddCard } =
     useContext(AddAndFavorite);
-  console.log(addCard);
   const toggleFovorite = (id: number) => {
     setFovorite((prev: any) =>
       prev.includes(id)

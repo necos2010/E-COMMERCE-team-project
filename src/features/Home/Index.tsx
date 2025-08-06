@@ -1,18 +1,26 @@
-import Banner from '../../page/Banner/Index'
-import styles from './Home.module.css'
-import HeroLinks from './components/HeroLinks'
-import FlashSales from './components/FlashSales'
+import Banner from "../../page/Banner/Index";
+import styles from "./Home.module.css";
+import HeroLinks from "./components/HeroLinks";
+import FlashSales from "./components/flashSales/FlashSales";
+import Categories from "./components/categories/Categories";
+import CBanner from "./components/categoriesBanner";
+import Month from "./components/month/Month";
+import OurProducts from "./components/ourProducts/OurProducts";
 
 function Index() {
   return (
-    <div className='container'>
+    <div className="container">
       <div className={styles.hero_banner_container}>
-        <HeroLinks/>
-        <Banner/> 
+        <HeroLinks />
+        <Banner />
       </div>
-      <FlashSales/>
+      <FlashSales />
+      <Categories />
+      <Month />
+      <CBanner />
+      <OurProducts/>
     </div>
-  )
+  );
 }
 
-export default Index
+export default Index;
