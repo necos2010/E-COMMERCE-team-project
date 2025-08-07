@@ -58,6 +58,7 @@ const Acc = () => {
         </div>
 
         <p>My WishList</p>
+        {/* <p>My</p> */}
       </div>
     </div>
   )
