@@ -6,23 +6,34 @@ export interface FlashCard {
   id: number;
   name: string;
   image: string;
-  price: string;
-  oldprice: string;
-  discount: string;
+  price: number;
+  oldprice?: number;
+  discount?: string;
   rating: number;
   reviews: string;
 }
 
-function FlashCards({ arrowBtn, showAllCards }: { arrowBtn: number,showAllCards: boolean }) {
+function FlashCards({ arrowBtn, showAllCards }: { arrowBtn: number, showAllCards: boolean }) {
   const { fovorite, setFovorite, addCard, setAddCard } =
     useContext(AddAndFavorite);
-  const toggleFovorite = (id: number) => {
-    setFovorite((prev: any) =>
-      prev.includes(id)
-        ? prev.filter((favId: any) => favId !== id)
-        : [...prev, id]
+
+  const toggleFovorite = (product: FlashCard) => {
+    setFovorite((prev: FlashCard[]) =>
+      prev.some((p) => p.id === product.id && p.name === product.name)
+        ? prev.filter((p) => !(p.id === product.id && p.name === product.name))
+        : [...prev, product]
     );
   };
+
+  const addToCard = (product: FlashCard) => {
+    setAddCard((prev: FlashCard[]) => 
+    prev.some((p) => p.id === product.id && p.name === product.name)
+    ? prev.filter((p) => !(p.id === product.id && p.name === product.name))
+    : [...prev, product]
+    )
+  }
+
+
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -67,11 +78,11 @@ function FlashCards({ arrowBtn, showAllCards }: { arrowBtn: number,showAllCards:
               <div className={styles.icons_wrapper}>
                 <i
                   className={`fa-regular fa-heart ${styles.fa_heart} ${
-                    fovorite.includes(item.id) ? styles.active_class_heart : ""
+                    fovorite.some((p: FlashCard) => p.id === item.id && p.name === item.name) ? styles.active_class_heart : ""
                   }`}
-                  onClick={() => toggleFovorite(item.id)}
+                  onClick={() => toggleFovorite(item)}
                 ></i>
-                <img src="../src/assets/eye.svg" alt="" />
+                <img src="../src/assets/eye.svg" />
               </div>
               <div className={styles.card_item_img_wrapper}>
                 <img
@@ -79,9 +90,9 @@ function FlashCards({ arrowBtn, showAllCards }: { arrowBtn: number,showAllCards:
                   src={`../src/assets/${item.image}`}
                   alt={item.name}
                 />
-                {!addCard.includes(item.id) && (
+                {!addCard.some((p:FlashCard) => p.id === item.id && p.name === item.name) && (
                   <button
-                    onClick={() => setAddCard([...addCard, item.id])}
+                    onClick={() => addToCard(item)}
                     className={styles.card_item_button}
                   >
                     Add to Cart
@@ -91,8 +102,8 @@ function FlashCards({ arrowBtn, showAllCards }: { arrowBtn: number,showAllCards:
               <div className={styles.flash_card_about_content}>
                 <h3 className={styles.flash_card_name}>{item.name}</h3>
                 <div className={styles.flash_cards_cost}>
-                  <p className={styles.now_cost}>{item.price}</p>
-                  <p className={styles.oldprice}>{item.oldprice}</p>
+                  <p className={styles.now_cost}>${item.price}</p>
+                  <p className={styles.oldprice}>${item.oldprice}</p>
                 </div>
                 <div className={styles.raiting_wrapper}>
                   {renderStars(item.rating)}

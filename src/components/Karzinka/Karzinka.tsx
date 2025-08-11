@@ -1,34 +1,54 @@
-import React, { useState } from "react";
+import { useContext, useState } from "react";
 import styles from "./Karzinka.module.css";
 import { NavLink } from "react-router-dom";
+import { AddAndFavorite } from "../../layouts/RootLayout";
+
+interface IProducts {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  oldprice?: string;
+  discount?: string;
+  rating: number;
+  reviews: string;
+  colors?: string[];
+  isNew?: boolean;
+  quantity?: number;
+}
 
 function Karzinka() {
-  const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem("cartItems");
-    return saved ? JSON.parse(saved) : [];
-  });
-
+  const { addCard, setAddCard } = useContext(AddAndFavorite);
   const [coupon, setCoupon] = useState("");
 
-  const handleQuantityChange = (id, delta) => {
-    const updated = cart.map((item) =>
-      item.id === id ? { ...item, quantity: Math.max(1, item.quantity + delta) } : item
+  // Miqdorni o‘zgartirish
+  const handleQuantityChange = (id: number, delta: number, name) => {
+    const updated = addCard.map((item: IProducts) =>
+      item.id === id && item.name === name
+        ? { ...item, quantity: Math.max(1, (item.quantity || 1) + delta) }
+        : item
     );
-    setCart(updated);
+    setAddCard(updated);
     localStorage.setItem("cartItems", JSON.stringify(updated));
   };
 
-  const handleRemove = (id) => {
-    const updated = cart.filter((item) => item.id !== id);
-    setCart(updated);
+  // Mahsulotni o‘chirish
+  const handleRemove = (id: number) => {
+    const updated = addCard.filter((item: IProducts) => item.id !== id);
+    setAddCard(updated);
     localStorage.setItem("cartItems", JSON.stringify(updated));
   };
 
-  const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  // Jami summa
+  const total = addCard.reduce(
+    (sum: number, item: IProducts) =>
+      sum + (item.price * (item.quantity || 1)),
+    0
+  );
 
   return (
     <div className={styles.container}>
-      {cart.length === 0 ? (
+      {addCard.length === 0 ? (
         <p className={styles.karzinkaP}>Savatingiz bo'sh</p>
       ) : (
         <>
@@ -44,19 +64,19 @@ function Karzinka() {
                 </tr>
               </thead>
               <tbody>
-                {cart.map((item) => (
-                  <tr key={item.id}>
+                {addCard.map((item: IProducts, index: number) => (
+                  <tr key={`${item.id}-${index}-${item.name}`}>
                     <td style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <img src={item.image} alt={item.title} width={50} height={50} />
-                      {item.title}
+                      <img src={`../src/assets/${item.image}`} alt={item.name} width={50} height={50} />
+                      {item.name}
                     </td>
                     <td>${item.price.toFixed(2)}</td>
                     <td className={styles.quantityControls}>
-                      <button onClick={() => handleQuantityChange(item.id, -1)}>-</button>
-                      <span className={styles.quantityDisplay}>{item.quantity}</span>
-                      <button onClick={() => handleQuantityChange(item.id, 1)}>+</button>
+                      <button onClick={() => handleQuantityChange(item.id, -1, item.name)}>-</button>
+                      <span className={styles.quantityDisplay}>{item.quantity || 1}</span>
+                      <button onClick={() => handleQuantityChange(item.id, 1, item.name)}>+</button>
                     </td>
-                    <td>${(item.price * item.quantity).toFixed(2)}</td>
+                    <td>${(item.price * (item.quantity || 1)).toFixed(2)}</td>
                     <td>
                       <button onClick={() => handleRemove(item.id)}>❌</button>
                     </td>

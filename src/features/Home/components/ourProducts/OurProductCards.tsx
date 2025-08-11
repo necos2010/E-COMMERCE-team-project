@@ -1,12 +1,44 @@
-import React from "react";
 import styles from "../../Home.module.css";
 import Mockdata from "../../../../mockdata/OurProducts.json";
+import { useContext } from "react";
+import { AddAndFavorite } from "../../../../layouts/RootLayout";
 interface MonthCardProps {
   showCardBtn: boolean;
 }
 
+interface IOurProducts {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  rating: number;
+  reviews: string;
+  isNew?: boolean;
+  colors?: string[];
+}
+
 function OurProductCards({ showCardBtn }: MonthCardProps) {
-  const showAllCard = showCardBtn ? Mockdata : Mockdata.slice(0, 8);
+  const showAllCard: IOurProducts[] = showCardBtn
+    ? Mockdata
+    : Mockdata.slice(0, 8);
+  const { fovorite, setFovorite, addCard, setAddCard } =
+    useContext(AddAndFavorite);
+
+  const toggleFovorite = (product: IOurProducts) => {
+    setFovorite((prev: IOurProducts[]) =>
+      prev.some((p) => p.id === product.id && p.name === product.name)
+        ? prev.filter((p) => !(p.id === product.id && p.name === product.name))
+        : [...prev, product]
+    );
+  };
+
+  const addToCard = (product: IOurProducts) => {
+    setAddCard((prev: IOurProducts[]) =>
+      prev.some((p) => p.id === product.id && p.name === product.name)
+        ? prev.filter((p) => !(p.id === product.id && p.name === product.name))
+        : [...prev, product]
+    );
+  };
   const renderStars = (rating: number) => {
     const stars = [];
     for (let i = 1; i <= 5; i++) {
@@ -46,22 +78,45 @@ function OurProductCards({ showCardBtn }: MonthCardProps) {
       {Mockdata &&
         showAllCard.map((item) => (
           <div className={styles.month_card_content} key={item.id}>
-            {item.isNew && <p className={`${styles.discount} ${styles.new_item}`}>NEW</p>}
+            {item.isNew && (
+              <p className={`${styles.discount} ${styles.new_item}`}>NEW</p>
+            )}
             <div className={styles.month_card_img_container}>
               <img src={`../src/assets/${item.image}`} alt={item.name} />
-              <button className={styles.card_item_button}>Add to Cart</button>
             </div>
             <div className={styles.month_card_icons_content}>
-              <i className="fa-regular fa-heart"></i>
+              <i
+                className={`fa-regular fa-heart ${styles.fa_heart} ${
+                  fovorite.some(
+                    (p: IOurProducts) =>
+                      p.id === item.id && p.name === item.name
+                  )
+                    ? styles.active_class_heart
+                    : ""
+                }`}
+                onClick={() => toggleFovorite(item)}
+              ></i>
               <img src="../src/assets/eye.svg" alt="" />
             </div>
+            {!addCard.some(
+              (p: IOurProducts) => p.id == item.id && p.name === item.name
+            ) && (
+              <button
+                onClick={() => addToCard(item)}
+                className={styles.card_item_button}
+              >
+                Add to Cart
+              </button>
+            )}
             <h4 className={styles.month_card_title}>{item.name}</h4>
-            <div className={`${styles.price_wrapper} ${styles.price_and_raiting_wrapper}`}>
-              <p className={styles.now_cost}>{item.price}</p>
-            <div className={styles.raiting_wrapper}>
-              {renderStars(item.rating)}
-              <p className={styles.reviews}>({item.reviews})</p>
-            </div>
+            <div
+              className={`${styles.price_wrapper} ${styles.price_and_raiting_wrapper}`}
+            >
+              <p className={styles.now_cost}>${item.price}</p>
+              <div className={styles.raiting_wrapper}>
+                {renderStars(item.rating)}
+                <p className={styles.reviews}>({item.reviews})</p>
+              </div>
             </div>
           </div>
         ))}

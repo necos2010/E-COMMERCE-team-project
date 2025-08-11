@@ -3,8 +3,8 @@
     "id": 1,
     "name": "The north coat",
     "image": "bs_products_card1.png",
-    "price": "$260", 
-    "oldprice": "$360",
+    "price": 260, 
+    "oldprice": 360,
     "rating": 5,
     "reviews": "65"
   },
@@ -12,8 +12,8 @@
     "id": 2,
     "name": "Gucci duffle bag",
     "image": "bs_products_card2.svg",
-    "price": "$960",
-    "oldprice": "$1160",
+    "price": 960,
+    "oldprice": 1160,
     "rating": 4.5,
     "reviews": "65"
   },
@@ -21,8 +21,8 @@
     "id": 3,
     "name": "RGB liquid CPU Cooler",
     "image": "bs_products_card3.svg",
-    "price": "$160",
-    "oldprice": "$170",
+    "price": 160,
+    "oldprice": 170,
     "rating": 4.5,
     "reviews": "65"
   },
@@ -30,7 +30,7 @@
     "id": 4,
     "name": "Small BookSelf",
     "image": "bs_products_card4.svg",
-    "price": "$360",
+    "price": 360,
     "rating": 5,
     "reviews": "65"
   },
@@ -38,8 +38,8 @@
     "id": 5,
     "name": "RGB liquid CPU Cooler",
     "image": "bs_products_card3.svg",
-    "price": "$160",
-    "oldprice": "$170",
+    "price": 160,
+    "oldprice": 170,
     "rating": 4.5,
     "reviews": "65"
   },
@@ -47,7 +47,7 @@
     "id": 6,
     "name": "Small BookSelf",
     "image": "bs_products_card4.svg",
-    "price": "$360",
+    "price": 360,
     "rating": 5,
     "reviews": "65"
   }

@@ -6,6 +6,20 @@ import Visa from "../../assets/Visa.svg"
 import Nagad from "../../assets/Nagad.svg"
 import Mastercard from "../../assets/Mastercard.svg"
 
+interface IProducts {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  oldprice?: string;
+  discount?: string;
+  rating: number;
+  reviews: string;
+  colors?: string[];
+  isNew?: boolean;
+  quantity?: number;
+}
+
 function Cheskout() {
   const [cart, setCart] = useState([]);
 
@@ -53,11 +67,11 @@ function Cheskout() {
         </div>
 
         <div className={styles.orderSummary}>
-         {cart.map((item) => (
+         {cart.map((item: IProducts) => (
   <div key={item.id} className={styles.cartItem}>
-    <img src={item.image} alt={item.title} className={styles.itemImage} />
+    <img src={`../src/assets/${item.image}`} alt={item.name} className={styles.itemImage} />
     <div className={styles.itemInfo}>
-      <p>{item.title}</p>
+      <p>{item.name}</p>
     </div>
     <div className={styles.itemPrice}>
       ${ (item.price * item.quantity).toFixed(2) }

@@ -1,149 +1,87 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useContext } from "react";
 import styles from "./Wishlist.module.css";
-import { FaTrash, FaStar } from "react-icons/fa";
-
-import Sumka from "../../assets/Sumka.svg";
-import Diktafon from "../../assets/diktafon.svg";
-import Plesteshin from "../../assets/plesteshin.png";
-import Kiyim from "../../assets/kiyim.svg";
-import Nootbok from "../../assets/nootbok.svg";
-import Compyuter from "../../assets/compyuter.svg";
-import Plesteshintwo from "../../assets/pleshteshin2.svg";
-import Klaviatura from "../../assets/kalvuatura.svg";
+import { FaStar } from "react-icons/fa";
+import { AddAndFavorite } from "../../layouts/RootLayout";
 import Category from "../../assets/Category Rectangle.svg";
+import { MdOutlineRemoveRedEye } from "react-icons/md";
+import { IoTrashOutline } from "react-icons/io5";
+import { RiShoppingCart2Line } from "react-icons/ri";
+// datalar
+import flashCards from "../../mockdata/FlashCards.json";
+import TheMonthCards from "../../mockdata/theMonthCards.json";
+import OurProducts from "../../mockdata/OurProducts.json";
 
-// Mahsulotlar
-const products = [
-  {
-    id: 1,
-    title: "Gucci duffle bag",
-    price: 960,
-    originalPrice: 1160,
-    discountPercent: 35,
-    image: Sumka,
-    badge: "-35%",
-    rating: 4.5,
-    reviews: 65,
-  },
-  {
-    id: 2,
-    title: "RGB liquid CPU Cooler",
-    price: 1960,
-    originalPrice: null,
-    discountPercent: 0,
-    image: Diktafon,
-    badge: "",
-    rating: 4.5,
-    reviews: 65,
-  },
-  {
-    id: 3,
-    title: "GP11 Shooter USB Gamepad",
-    price: 550,
-    originalPrice: null,
-    discountPercent: 0,
-    image: Plesteshin,
-    badge: "",
-    rating: 4.5,
-    reviews: 65,
-  },
-  {
-    id: 4,
-    title: "Quilted Satin Jacket",
-    price: 750,
-    originalPrice: null,
-    discountPercent: 0,
-    image: Kiyim,
-    badge: "",
-    rating: 4.5,
-    reviews: 65,
-  },
-  {
-    id: 5,
-    title: "ASUS FHD Gaming Laptop",
-    price: 960,
-    originalPrice: 1160,
-    discountPercent: 35,
-    image: Nootbok,
-    badge: "-35%",
-    rating: 4.5,
-    reviews: 65,
-  },
-  {
-    id: 6,
-    title: "IPS LCD Gaming Monitor",
-    price: 1160,
-    originalPrice: null,
-    discountPercent: 0,
-    image: Compyuter,
-    badge: "",
-    rating: 4.5,
-    reviews: 65,
-  },
-  {
-    id: 7,
-    title: "HAVIT HV-G92 Gamepad",
-    price: 560,
-    originalPrice: null,
-    discountPercent: 0,
-    image: Plesteshintwo,
-    badge: "NEW",
-    rating: 4.5,
-    reviews: 65,
-  },
-  {
-    id: 8,
-    title: "AK-900 Wired Keyboard",
-    price: 200,
-    originalPrice: null,
-    discountPercent: 0,
-    image: Klaviatura,
-    badge: "",
-    rating: 4.5,
-    reviews: 65,
-  },
-];
+interface IWishlistProducts {
+  id: number;
+  name: string;
+  image: string;
+  price: number;
+  oldprice?: number;
+  discount?: string;
+  rating: number;
+  reviews: string;
+  colors?: string[];
+  isNew?: boolean;
+}
 
 function Wishlist() {
-  const navigate = useNavigate();
+  const [seeAll, setSeeAll] = useState(false);
+  const { addCard, setAddCard, fovorite, setFovorite } =
+    useContext(AddAndFavorite);
 
-  // LocalStorage'dan savatchani olish
-  const [cart, setCart] = useState(() => {
-    const saved = localStorage.getItem("cartItems");
-    return saved ? JSON.parse(saved) : [];
-  });
+  const mockdata: IWishlistProducts[] = [
+    ...flashCards,
+    ...TheMonthCards,
+    ...OurProducts,
+  ];
 
-  // Wishlist va Just for You
-  const wishlistProducts = products.slice(0, 4);
-  const justForYouProducts = products.slice(4);
-
-  // Har bir mahsulotni savatchaga qo‘shish
-  const handleAddToCart = (product) => {
-    const existing = cart.find((item) => item.id === product.id);
-
-    let updatedCart;
-    if (existing) {
-      updatedCart = cart.map((item) =>
-        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
-      );
-    } else {
-      updatedCart = [...cart, { ...product, quantity: 1 }];
+  function RandomNumber(num: number) {
+    const count = Math.min(4, num);
+    const randNum: number[] = [];
+    for (let i = 0; i < count; i++) {
+      const numCal = Math.floor(Math.random() * num);
+      if (randNum.includes(numCal)) {
+        i--;
+      } else {
+        randNum.push(numCal);
+      }
     }
+    return randNum;
+  }
+  const randomFindNumber = RandomNumber(mockdata.length);
 
-    localStorage.setItem("cartItems", JSON.stringify(updatedCart));
-    setCart(updatedCart);
+  const forYou = randomFindNumber.map((index) => mockdata[index]);
+  const forYouData = seeAll? mockdata : forYou
 
-    navigate("/karzinka"); // Karzinka sahifasiga o'tkazish
+  const removeCards = (id: number, name: string) => {
+    setFovorite(
+      fovorite.filter(
+        (p: IWishlistProducts) => !(p.id === id && p.name === name)
+      )
+    );
   };
 
+  const toggleFovorite = (product: IWishlistProducts) => {
+    setFovorite((prev: IWishlistProducts[]) =>
+      prev.some((p) => p.id === product.id && p.name === product.name)
+        ? prev.filter((p) => !(p.id === product.id && p.name === product.name))
+        : [...prev, product]
+    );
+  };
+
+  const filteredForYouData = forYouData.filter(
+  (product) =>
+    !fovorite.some(
+      (fav: IWishlistProducts) => fav.id === product.id && fav.name === product.name
+    )
+)
+
+
   return (
-    <div className={styles.container}>
+    <div className="container">
       {/* Wishlist Header */}
       <div className={styles.wishlistHeader}>
-        <h2 className={styles.wishlisth2}>
-          Wishlist ({wishlistProducts.length})
-        </h2>
+        <h2 className={styles.wishlisth2}>Wishlist ({fovorite.length})</h2>
         <div className={styles.buttonsWrapper}>
           <button className={styles.wishlistButton}>Move All To Bag</button>
         </div>
@@ -151,21 +89,27 @@ function Wishlist() {
 
       {/* Wishlist productlar */}
       <div className={styles.productGrid}>
-        {wishlistProducts.map((product) => (
-          <div key={product.id} className={styles.productCard}>
+        {fovorite.map((product: IWishlistProducts, index: number) => (
+          <div key={`${product.id}-${index}-${product.name}`} className={styles.productCard}>
+            {product.isNew && (
+              <p className={`${styles.discount} ${styles.new_item}`}>NEW</p>
+            )}
             <div className={styles.imageWrapper}>
               <img
-                src={product.image}
-                alt={product.title}
+                src={`../src/assets/${product.image}`}
+                alt={product.name}
                 className={styles.productImage}
               />
-              {product.badge && (
-                <div className={styles.badge}>{product.badge}</div>
+              {product.discount && (
+                <div className={styles.badge}>{product.discount}</div>
               )}
-              <FaTrash className={styles.trashIcon} />
+              <IoTrashOutline
+                className={styles.trashIcon}
+                onClick={() => removeCards(product.id, product.name)}
+              />
             </div>
 
-            <h4 className={styles.productTitle}>{product.title}</h4>
+            <h4 className={styles.productTitle}>{product.name}</h4>
 
             <div className={styles.ratingSection}>
               {[...Array(5)].map((_, i) => (
@@ -179,19 +123,22 @@ function Wishlist() {
 
             <div className={styles.priceSection}>
               <span className={styles.price}>${product.price}</span>
-              {product.originalPrice && (
-                <span className={styles.originalPrice}>
-                  ${product.originalPrice}
-                </span>
+              {product.price && (
+                <span className={styles.originalPrice}>{product.oldprice && `$${product.oldprice}`}</span>
               )}
             </div>
 
-            <button
-              className={styles.addToCartButton}
-              onClick={() => handleAddToCart(product)}
-            >
-              Add To Cart
-            </button>
+            {!addCard.some(
+              (p: IWishlistProducts) =>
+                p.id === product.id && p.name === product.name
+            ) && (
+              <button
+                className={styles.addToCartButton}
+                onClick={() => setAddCard([...addCard, product])}
+              >
+               Add To Cart
+              </button>
+            )}
           </div>
         ))}
       </div>
@@ -202,25 +149,33 @@ function Wishlist() {
           <img src={Category} alt="" />
           <h3 className={styles.justForYouTitle}>Just For You</h3>
         </div>
-        <button className={styles.seeAllButton}>See All</button>
+        <button
+          onClick={() => setSeeAll(!seeAll)}
+          className={styles.seeAllButton}
+        >
+          {seeAll?"Hide All": "See All"}
+        </button>
       </div>
 
       <div className={styles.productGrid}>
-        {justForYouProducts.map((product) => (
-          <div key={product.id} className={styles.productCard}>
+        {filteredForYouData.map((product, index) => (
+          <div key={`${product.id}-${index}-${product.name}`} className={styles.productCard}>
+            {product.isNew && (
+              <p className={styles.new_item}>NEW</p>
+            )} 
             <div className={styles.imageWrapper}>
               <img
-                src={product.image}
-                alt={product.title}
+                src={`../src/assets/${product.image}`}
+                alt={product.name}
                 className={styles.productImage}
               />
-              {product.badge && (
-                <div className={styles.badge}>{product.badge}</div>
+              {product.discount && (
+                <div className={styles.badge}>{product.discount}</div>
               )}
-              <FaTrash className={styles.trashIcon} />
+              <MdOutlineRemoveRedEye className={styles.eye_icon} onClick={() => toggleFovorite(product)}/>
             </div>
 
-            <h4 className={styles.productTitle}>{product.title}</h4>
+            <h4 className={styles.productTitle}>{product.name}</h4>
 
             <div className={styles.ratingSection}>
               {[...Array(5)].map((_, i) => (
@@ -234,19 +189,22 @@ function Wishlist() {
 
             <div className={styles.priceSection}>
               <span className={styles.price}>${product.price}</span>
-              {product.originalPrice && (
-                <span className={styles.originalPrice}>
-                  ${product.originalPrice}
-                </span>
+              {product.price && (
+                <span className={styles.originalPrice}>{product.oldprice && ` $${product.oldprice}`}</span>
               )}
             </div>
 
-            <button
-              className={styles.addToCartButton}
-              onClick={() => handleAddToCart(product)}
-            >
-              Add To Cart
-            </button>
+            {addCard.some(
+              (p: IWishlistProducts) =>
+                p.id === product.id && p.name === product.name
+            ) && (
+              <button
+                className={styles.addToCartButton}
+                onClick={() => setAddCard([...addCard, product])}
+              >
+                Add To Cart
+              </button>
+            )}
           </div>
         ))}
       </div>

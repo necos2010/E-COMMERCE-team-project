@@ -20,8 +20,8 @@ function RootLayout() {
     { name: "About", path: "/about" },
     { name: "Sign up", path: "/sign-up" },
   ]);
-  const [fovorite, setFovorite] = useState<number[]>([]);
-  const [addCard, setAddCard] = useState<number[]>([]);
+  const [fovorite, setFovorite] = useState<string[]>([]);
+  const [addCard, setAddCard] = useState<string[]>([]);
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
