@@ -51,7 +51,7 @@ function Wishlist() {
   const randomFindNumber = RandomNumber(mockdata.length);
 
   const forYou = randomFindNumber.map((index) => mockdata[index]);
-  const forYouData = seeAll? mockdata : forYou
+  const forYouData = seeAll ? mockdata : forYou;
 
   const removeCards = (id: number, name: string) => {
     setFovorite(
@@ -70,12 +70,23 @@ function Wishlist() {
   };
 
   const filteredForYouData = forYouData.filter(
-  (product) =>
-    !fovorite.some(
-      (fav: IWishlistProducts) => fav.id === product.id && fav.name === product.name
-    )
-)
+    (product) =>
+      !fovorite.some(
+        (fav: IWishlistProducts) =>
+          fav.id === product.id && fav.name === product.name
+      )
+  );
 
+  const moveToAllBag = () => {
+    setAddCard((prev: IWishlistProducts[]) => {
+      const newItems = fovorite.filter(
+        (fav: IWishlistProducts) =>
+          !prev.some((p) => p.id === fav.id && p.name === fav.name)
+      );
+      return [...prev, ...newItems];
+    });
+    alert("products added your cart")
+  };
 
   return (
     <div className="container">
@@ -83,14 +94,19 @@ function Wishlist() {
       <div className={styles.wishlistHeader}>
         <h2 className={styles.wishlisth2}>Wishlist ({fovorite.length})</h2>
         <div className={styles.buttonsWrapper}>
-          <button className={styles.wishlistButton}>Move All To Bag</button>
+          <button onClick={moveToAllBag} className={styles.wishlistButton}>
+            Move All To Bag
+          </button>
         </div>
       </div>
 
       {/* Wishlist productlar */}
       <div className={styles.productGrid}>
         {fovorite.map((product: IWishlistProducts, index: number) => (
-          <div key={`${product.id}-${index}-${product.name}`} className={styles.productCard}>
+          <div
+            key={`${product.id}-${index}-${product.name}`}
+            className={styles.productCard}
+          >
             {product.isNew && (
               <p className={`${styles.discount} ${styles.new_item}`}>NEW</p>
             )}
@@ -124,7 +140,9 @@ function Wishlist() {
             <div className={styles.priceSection}>
               <span className={styles.price}>${product.price}</span>
               {product.price && (
-                <span className={styles.originalPrice}>{product.oldprice && `$${product.oldprice}`}</span>
+                <span className={styles.originalPrice}>
+                  {product.oldprice && `$${product.oldprice}`}
+                </span>
               )}
             </div>
 
@@ -136,7 +154,7 @@ function Wishlist() {
                 className={styles.addToCartButton}
                 onClick={() => setAddCard([...addCard, product])}
               >
-               Add To Cart
+                Add To Cart
               </button>
             )}
           </div>
@@ -153,16 +171,17 @@ function Wishlist() {
           onClick={() => setSeeAll(!seeAll)}
           className={styles.seeAllButton}
         >
-          {seeAll?"Hide All": "See All"}
+          {seeAll ? "Hide All" : "See All"}
         </button>
       </div>
 
       <div className={styles.productGrid}>
         {filteredForYouData.map((product, index) => (
-          <div key={`${product.id}-${index}-${product.name}`} className={styles.productCard}>
-            {product.isNew && (
-              <p className={styles.new_item}>NEW</p>
-            )} 
+          <div
+            key={`${product.id}-${index}-${product.name}`}
+            className={styles.productCard}
+          >
+            {product.isNew && <p className={styles.new_item}>NEW</p>}
             <div className={styles.imageWrapper}>
               <img
                 src={`../src/assets/${product.image}`}
@@ -172,7 +191,10 @@ function Wishlist() {
               {product.discount && (
                 <div className={styles.badge}>{product.discount}</div>
               )}
-              <MdOutlineRemoveRedEye className={styles.eye_icon} onClick={() => toggleFovorite(product)}/>
+              <MdOutlineRemoveRedEye
+                className={styles.eye_icon}
+                onClick={() => toggleFovorite(product)}
+              />
             </div>
 
             <h4 className={styles.productTitle}>{product.name}</h4>
@@ -190,7 +212,9 @@ function Wishlist() {
             <div className={styles.priceSection}>
               <span className={styles.price}>${product.price}</span>
               {product.price && (
-                <span className={styles.originalPrice}>{product.oldprice && ` $${product.oldprice}`}</span>
+                <span className={styles.originalPrice}>
+                  {product.oldprice && ` $${product.oldprice}`}
+                </span>
               )}
             </div>
 

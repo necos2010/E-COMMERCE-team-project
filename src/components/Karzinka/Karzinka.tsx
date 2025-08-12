@@ -22,27 +22,24 @@ function Karzinka() {
   const [coupon, setCoupon] = useState("");
 
   // Miqdorni o‘zgartirish
-  const handleQuantityChange = (id: number, delta: number, name) => {
+  const handleQuantityChange = (id: number, delta: number, name: string) => {
     const updated = addCard.map((item: IProducts) =>
       item.id === id && item.name === name
         ? { ...item, quantity: Math.max(1, (item.quantity || 1) + delta) }
         : item
     );
     setAddCard(updated);
-    localStorage.setItem("cartItems", JSON.stringify(updated));
   };
 
   // Mahsulotni o‘chirish
   const handleRemove = (id: number) => {
     const updated = addCard.filter((item: IProducts) => item.id !== id);
     setAddCard(updated);
-    localStorage.setItem("cartItems", JSON.stringify(updated));
   };
 
   // Jami summa
   const total = addCard.reduce(
-    (sum: number, item: IProducts) =>
-      sum + (item.price * (item.quantity || 1)),
+    (sum: number, item: IProducts) => sum + item.price * (item.quantity || 1),
     0
   );
 
@@ -67,7 +64,12 @@ function Karzinka() {
                 {addCard.map((item: IProducts, index: number) => (
                   <tr key={`${item.id}-${index}-${item.name}`}>
                     <td style={{ display: "flex", alignItems: "center", gap: "10px" }}>
-                      <img src={`../src/assets/${item.image}`} alt={item.name} width={50} height={50} />
+                      <img
+                        src={`../src/assets/${item.image}`}
+                        alt={item.name}
+                        width={50}
+                        // height={50}
+                      />
                       {item.name}
                     </td>
                     <td>${item.price.toFixed(2)}</td>
