@@ -2,7 +2,7 @@ import EditProfile from "./commponents/EditProfile";
 import Acc from "./commponents/Acc";
 import styles from "./User.module.css";
 import BreadCrumb from "../../hooks/User"
-import "./index.css";
+
 
 const Index = () => {
   return (
@@ -11,7 +11,7 @@ const Index = () => {
         <BreadCrumb/>
         <p>Welcome! <span className={styles.userName}>Md Rimel</span></p>
       </div>
-      <div className="wrapper">
+      <div className={styles.wrapper}>
         <Acc />
        <EditProfile/>
       </div>

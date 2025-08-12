@@ -32,5 +32,10 @@
 }
 
 .display p {
-    width: 149px;
+    width: 153px;
 }
+
+.wrapper {
+    display: flex;
+}
+
