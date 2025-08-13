@@ -71,6 +71,7 @@
   gap: 10px;
   padding-left: 30px;
   align-items: center;
+  margin: 0;
 }
 
 .home_red_title::after {
@@ -579,4 +580,15 @@
 
 .new_item {
   background-color: #00ff66;
+}
+
+.new_arrival_title {
+  font-family: "Poppins", sans-serif;
+  color: #000;
+  margin: 0;
+  padding-top: 20px;
+}
+
+.featured_section_container {
+  padding-bottom: 140px;
 }

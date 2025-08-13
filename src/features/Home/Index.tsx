@@ -6,6 +6,7 @@ import Categories from "./components/categories/Categories";
 import CBanner from "./components/categoriesBanner";
 import Month from "./components/month/Month";
 import OurProducts from "./components/ourProducts/OurProducts";
+import Featured from "./components/featured/Featured";
 
 function Index() {
   return (
@@ -19,6 +20,7 @@ function Index() {
       <Month />
       <CBanner />
       <OurProducts/>
+      <Featured/>
     </div>
   );
 }
