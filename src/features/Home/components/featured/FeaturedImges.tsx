@@ -1,9 +1,13 @@
-import React from 'react'
+// FeatureImages.tsx
+import ps5Img from "../../../../assets/ps5.png";
+import womensImg from "../../../../assets/woman.png";
+import speakersImg from "../../../../assets/threespeaker.png";
+import perfumeImg from "../../../../assets/gucci.png";
 
-function FeaturedImges() {
-  return (
-    <div>FeaturedImges</div>
-  )
-}
 
-export default FeaturedImges
+export const featureImages = {
+  ps5: ps5Img,
+  womens: womensImg,
+  speakers: speakersImg,
+  perfume: perfumeImg,
+};

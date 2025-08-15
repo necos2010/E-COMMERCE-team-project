@@ -592,3 +592,149 @@
 .featured_section_container {
   padding-bottom: 140px;
 }
+.featuredSection {
+  margin: 2rem 0;
+  font-family: "Poppins";
+}
+
+.featuredTag {
+  color: red;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.featuredTitle {
+  font-size: 3rem;
+  margin-bottom: 4rem;
+  font-family: "Inter";
+  font-weight: 500;
+  
+}
+.two_box button {
+  width: 20px;
+  height: 40px;
+  background-color: #db4444;
+  border: 1px solid #db4444;
+  border-radius: 4px;
+}
+.two_box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.featuredGrid {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr;
+  gap: 1rem;
+}
+
+.featuredItemLarge {
+  position: relative;
+  
+}
+
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.featuredItemWide {
+  position: relative;
+}
+
+.bottomGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.featuredItemSmall {
+  position: relative;
+}
+
+.featuredItemLarge h3 {
+  font-weight: 600;
+  font-size: 24px;
+  font-family: "Inter";
+}
+.featuredItemLarge p {
+  color: white;
+  line-height: 21px;
+  font-weight: 400;
+  width: 250px;
+}
+.featuredItemLarge button {
+  font-weight: 400;
+  background: none;
+  border: none;
+  font-size: 16px;
+  border-bottom: 1px solid white;
+}
+.featuredItemLarge img {
+  width: 570px;
+  height: 600px;
+  border-radius: 4px;
+}
+.featuredItemWide {
+  width: 570px;
+  height: 284px;
+  border-radius: 4px;
+}
+.featuredItemSmall img {
+  width: 270px;
+  height: 300px;
+}
+.textOverlay {
+  position: absolute;
+  bottom: 40px;
+  left: 10px;
+  color: white;
+  margin-left: 30px;
+  margin-top: -30px;
+  color: white;
+}
+.featuredItemWide h3 {
+  font-weight: 500;
+  font-family: "Inter";
+}
+.featuredItemWide p {
+  color: white;
+  width: 250px;
+}
+.featuredItemWide button {
+  border: none;
+  border-bottom: 1px solid white;
+  background: none;
+}
+.textOverlay h3 {
+  margin: 0;
+  font-size: 1.2rem;
+}
+.featuredItemSmall h3 {
+  font-weight: 500;
+  font-family: "Inter";
+
+}
+.featuredItemSmall p {
+  color: white;
+  
+}
+.featuredItemSmall button {
+  background: none;
+  border: none;
+  border-bottom: 1px solid white;
+}
+.featuredItemSmall 
+.textOverlay p {
+  margin: 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.textOverlay a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+}
