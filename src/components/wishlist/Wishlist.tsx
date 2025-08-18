@@ -6,6 +6,7 @@ import Category from "../../assets/Category Rectangle.svg";
 import { MdOutlineRemoveRedEye } from "react-icons/md";
 import { IoTrashOutline } from "react-icons/io5";
 import { RiShoppingCart2Line } from "react-icons/ri";
+import { useLocation } from "react-router";
 // datalar
 import flashCards from "../../mockdata/FlashCards.json";
 import TheMonthCards from "../../mockdata/theMonthCards.json";
@@ -25,10 +26,11 @@ interface IWishlistProducts {
 }
 
 function Wishlist() {
-  const [seeAll, setSeeAll] = useState(false);
+  const location = useLocation()
+  const fromFlashSales = location.state?.seeAll ?? false;
+  const [seeAll, setSeeAll] = useState(fromFlashSales);
   const { addCard, setAddCard, fovorite, setFovorite } =
     useContext(AddAndFavorite);
-
   const mockdata: IWishlistProducts[] = [
     ...flashCards,
     ...TheMonthCards,

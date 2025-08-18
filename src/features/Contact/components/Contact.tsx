@@ -1,15 +1,13 @@
 import styles from "../Contact.module.css"
 import phone from '../../../assets/icons-phone.svg';
 import mail from '../../../assets/icons-mail.svg';
-
+import User from '../../../hooks/User'
 
 const Contact = () => {
   return (
     <div className={styles.contactContainer}>
       {/* Breadcrumb */}
-      <div className={styles.breadcrumb}>
-        <a href="/" className={styles.link}>Home</a> / <span>Contact</span>
-      </div>
+  <User/>
 
       <div className={styles.content}>
         <div className={styles.infoBox}>

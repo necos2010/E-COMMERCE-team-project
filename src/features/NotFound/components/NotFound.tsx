@@ -1,11 +1,10 @@
 import styles from "../NotFound.module.css";
+import User from '../../../hooks/User'
 
 const NotFound = () => {
   return (
     <div className={styles.container}>
-      <div className={styles.breadcrumb}>
-        <a href="/" className={styles.link}>Home</a> / <span>404 Error</span>
-      </div>
+     <User/>
 
       <h1 className={styles.title}>404 Not Found</h1>
 
@@ -13,7 +12,7 @@ const NotFound = () => {
         Your visited page not found. You may go home page.
       </p>
 
-      <button className={styles.button}>Back to home page</button>
+      <a href="/"><button className={styles.button}>Back to home page</button></a>
     </div>
   );
 };

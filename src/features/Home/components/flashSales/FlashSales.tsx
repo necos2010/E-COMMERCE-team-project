@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../../Home.module.css";
 import FlashCards from "./FlashCards";
 import Mockdata from "../../../../mockdata/FlashCards.json";
+import { NavLink } from "react-router-dom";
 
 function FlashSales() {
   const countTime = 3 * 24 * 60 * 60;
@@ -67,7 +68,9 @@ function FlashSales() {
       <FlashCards arrowBtn={arrowBtn} showAllCards={showAllCards}/>
       <div className={styles.view_all_products_and_hr}>
         <div className={styles.view_products_btn}>
-          <button>View All Products</button>
+          <NavLink to="/wishlist" state={{ seeAll: true}}>
+            <button>View All Products</button>
+          </NavLink>
         </div>
         <hr className={styles.flash_sales_hr} />
       </div>
