@@ -20,8 +20,16 @@ function RootLayout() {
     { name: "About", path: "/about" },
     { name: "Sign up", path: "/sign-up" },
   ]);
+  const headerMenuData = [
+    { title: "Manage My Account", img: "header_user.svg", path: "/user" },
+    { title: "My Order", img: "icon-mallbag.svg", path: "/korzinka" },
+    { title: "My Cancellations", img: "icon-cancel.svg", path: "my-cancellation"},
+    { title: "My Reviews", img: "Icon-Reviews.svg", path: "my-reviews" },
+    { title: "Logout", img: "Icon-logout.svg", path: "/sign-up"},
+  ];
   const [fovorite, setFovorite] = useState<string[]>([]);
   const [addCard, setAddCard] = useState<string[]>([]);
+  // const [openMenu, setOpenMenu] = useState(true);
 
   useEffect(() => {
     const path = location.pathname.toLowerCase();
@@ -62,7 +70,11 @@ function RootLayout() {
               </div>
               <NavLink to="wishlist" className={styles.wishlist_link}>
                 <img className={styles.header_end_icon} src={Layk} alt="layk" />
-                {fovorite.length > 0 &&<span className={styles.wishlist_span}>{fovorite.length}</span>}
+                {fovorite.length > 0 && (
+                  <span className={styles.wishlist_span}>
+                    {fovorite.length}
+                  </span>
+                )}
               </NavLink>
               <NavLink to="karzinka" className={styles.korzinka_link}>
                 <img
@@ -70,7 +82,9 @@ function RootLayout() {
                   src={Karzinka}
                   alt="karzinka"
                 />
-                {addCard.length > 0 &&<span className={styles.korzinka_span}>{addCard.length}</span>}
+                {addCard.length > 0 && (
+                  <span className={styles.korzinka_span}>{addCard.length}</span>
+                )}
               </NavLink>
               <NavLink to="/user">
                 <i
@@ -81,6 +95,18 @@ function RootLayout() {
                   }`}
                 ></i>
               </NavLink>
+              <div className={styles.header_menu_container}>
+              {headerMenuData.map((item, i) => (
+                <ul key={i} className={styles.headerMenu}>
+                  <li>
+                    <NavLink to={item.path}>
+                    <img src={`../src/assets/${item.img}`} alt={item.title}/>
+                    {item.title}
+                    </NavLink>
+                  </li>
+                </ul>
+              ))}
+              </div>
             </div>
           </header>
         </div>
@@ -91,7 +117,7 @@ function RootLayout() {
           setFovorite: setFovorite,
           addCard: addCard,
           setAddCard: setAddCard,
-        }}
+        }}  
       >
         <Outlet />
       </AddAndFavorite.Provider>
@@ -162,7 +188,7 @@ function RootLayout() {
               />
             </div>
           </div>
-  
+
           <hr className={styles.footerHr} />
           <div className={styles.footerCopyright}>
             <p className={styles.copyrightText}>
