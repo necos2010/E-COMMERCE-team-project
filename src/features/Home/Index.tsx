@@ -7,6 +7,8 @@ import CBanner from "./components/categoriesBanner";
 import Month from "./components/month/Month";
 import OurProducts from "./components/ourProducts/OurProducts";
 import Featured from "./components/featured/Featured";
+import { FloatButton } from "antd";
+import { ArrowUpOutlined } from "@ant-design/icons";
 
 function Index() {
   return (
@@ -21,6 +23,7 @@ function Index() {
       <CBanner />
       <OurProducts/>
       <Featured/>
+      <FloatButton.BackTop icon={<ArrowUpOutlined/>}/>
     </div>
   );
 }

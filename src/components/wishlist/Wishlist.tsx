@@ -28,7 +28,7 @@ interface IWishlistProducts {
 function Wishlist() {
   const location = useLocation()
   const fromFlashSales = location.state?.seeAll ?? false;
-  const [seeAll, setSeeAll] = useState(fromFlashSales);
+  const [seeAll, setSeeAll] = useState(fromFlashSales); 
   const { addCard, setAddCard, fovorite, setFovorite } =
     useContext(AddAndFavorite);
   const mockdata: IWishlistProducts[] = [

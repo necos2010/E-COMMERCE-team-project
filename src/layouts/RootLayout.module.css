@@ -306,6 +306,12 @@ a {
 
 /* .headerMenu */
 
-.headeritem:hover .header_menu_container {
+.headeritem a:hover + .header_menu_container {
   display: flex;
 }
+
+.header_menu_container:hover {
+  display: flex;
+}
+
+
